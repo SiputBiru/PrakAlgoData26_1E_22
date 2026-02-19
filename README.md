@@ -21,11 +21,10 @@ Kelas: TI-1E<br>
 
 * go to the cloned repo/downloaded
 
-* execute change the FILENAME with the Java file that you want to execute. all of the file is not connected or related. and also change the minggu to the directory you want:
+* execute change the `FILENAME` with the Java file that you want to execute. all of the file is not connected or related. and also change the `minggu` to the directory you want:
 
 ```bash
 java {minggu}/src/{filename}.java
 ```
 
 * Jobsheet Minggu 1 [link](minggu1/REPORT.md)
-
