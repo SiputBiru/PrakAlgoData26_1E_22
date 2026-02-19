@@ -1,20 +1,14 @@
 # REPORT
 
-my answer of Jobsheet 1
-
-## Description
-
-Simple answer of my Jobsheet
-
 ## Getting Started
 
 ### Dependencies
 
-* JDK version 8 minimum for the installation refer to [link](https://www.java.com/en/download/manual.jsp)
+* JDK version 11 minimum(cause we can just run java file without actually creating new class file) for the installation refer to [link](https://www.java.com/en/download/manual.jsp)
 
 * Operating System windows or linux compatible with java
 
-* Text Editor (like Vscode or Sublime or vim(i use Neovim btw))
+* Text Editor (like Vscode or Sublime or vim)
 
 ### Executing program
 
@@ -28,10 +22,10 @@ java {minggu}/src/{filename}.java
 
 ## Authors
 
-SiputBiru
-Nama: Raditya Mahatma Ghosi
-NIM: 254107020102
-Kelas: TI-1E
+SiputBiru<br>
+Nama: Raditya Mahatma Ghosi<br>
+NIM: 254107020102<br>
+Kelas: TI-1E<br>
 
 ## Percobaan 1: Pemilihan
 
