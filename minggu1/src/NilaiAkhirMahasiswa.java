@@ -41,7 +41,7 @@ class NilaiAkhirMahasiswa {
     for (int i = 0; i < nilaiAkhir.length; i++) {
       System.out.printf("Masukkan Nilai %-6s : ", nilaiAkhir[i]);
       nilaiKotor[i] = sc.nextDouble();
-      if (nilaiKotor[i] > 100 && nilaiKotor[i] < 0) {
+      if (nilaiKotor[i] > 100 || nilaiKotor[i] < 0) {
         isValid = false;
       }
       switch (nilaiAkhir[i]) {

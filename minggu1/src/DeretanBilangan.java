@@ -17,7 +17,7 @@ class DeretanBilangan {
         System.out.printf("# ");
       } else if (i == 10 || i == 15) {
         continue;
-      } else if (i % 2 == 0 && !(i % 3 == 0)) {
+      } else if (i % 2 == 0) {
         System.out.printf("%d ", i);
       } else {
         System.out.printf("* ");
