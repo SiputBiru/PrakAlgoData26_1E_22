@@ -28,3 +28,5 @@ java {minggu}/src/{filename}.java
 ```
 
 * Jobsheet Minggu 1 [link](minggu1/REPORT.md)
+* Jobsheet Minggu 2 [link](minggu2/REPORT.md)
+* Jobsheet Minggu 3 [link](minggu3/REPORT.md)
