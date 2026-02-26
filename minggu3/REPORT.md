@@ -619,3 +619,53 @@ for (int i = 0; i < 3; i++) {
 }
 
 ```
+
+4\. Pertanyaan: "Modifikasi kode program pada class MatakuliahDemo agar panjang (jumlah elemen) dari
+array of object Matakuliah ditentukan oleh user melalui input dengan Scanner"
+
+Jawaban:
+
+```java
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+
+    int banyakInput = 0;
+
+    System.out.println("Berapa banyak data Matakuliah yang ingin di input?");
+    banyakInput = sc.nextInt();
+
+    MataKuliah22[] arrayOfMataKuliah = new MataKuliah22[banyakInput];
+
+    for (int i = 0; i < banyakInput; i++) {
+      System.out.println("Masukkan Data MataKuliah ke-" + (i + 1));
+      arrayOfMataKuliah[i] = new MataKuliah22();
+      arrayOfMataKuliah[i].tambahData();
+    }
+
+    for (int i = 0; i < banyakInput; i++) {
+      System.out.println("Data MataKuliah ke-" + (i + 1));
+      arrayOfMataKuliah[i].cetakInfo();
+    }
+
+    sc.close(); // di close saat benar benar sudah tidak diperlukan
+
+  }
+
+```
+
+```bash
+Berapa banyak data Matakuliah yang ingin di input?
+1
+Masukkan Data MataKuliah ke-1
+Kode         : 23
+Nama         : Matdas
+Sks          : 4
+Jumlah Jam   : 4
+--------------------------------------
+Data MataKuliah ke-1
+Kode               : 23
+nama               : Matdas
+Sks                : 4
+Jumlah jam         : 4
+--------------------------------------
+```

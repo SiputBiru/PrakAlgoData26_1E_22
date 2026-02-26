@@ -14,6 +14,10 @@ public class MataKuliah22 {
     this.jumlahJam = jumlahJam;
   }
 
+  public MataKuliah22() {
+
+  }
+
   public void tambahData() {
     Scanner sc = new Scanner(System.in);
 
@@ -34,7 +38,6 @@ public class MataKuliah22 {
     this.jumlahJam = Integer.parseInt(dummy);
     System.out.println("--------------------------------------");
 
-    sc.close();
   }
 
   public void cetakInfo() {

@@ -4,19 +4,25 @@ public class MataKuliahDemo22 {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
-    MataKuliah22[] arrayOfMataKuliah = new MataKuliah22[3];
+    int banyakInput = 0;
 
-    for (int i = 0; i < 3; i++) {
+    System.out.println("Berapa banyak data Matakuliah yang ingin di input?");
+    banyakInput = sc.nextInt();
+
+    MataKuliah22[] arrayOfMataKuliah = new MataKuliah22[banyakInput];
+
+    for (int i = 0; i < banyakInput; i++) {
       System.out.println("Masukkan Data MataKuliah ke-" + (i + 1));
+      arrayOfMataKuliah[i] = new MataKuliah22();
       arrayOfMataKuliah[i].tambahData();
     }
 
-    sc.close();
-
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < banyakInput; i++) {
       System.out.println("Data MataKuliah ke-" + (i + 1));
       arrayOfMataKuliah[i].cetakInfo();
     }
+
+    sc.close();
 
   }
 
