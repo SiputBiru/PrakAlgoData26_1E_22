@@ -17,22 +17,21 @@ public class MataKuliah22 {
   public void tambahData() {
     Scanner sc = new Scanner(System.in);
 
-    String kode, nama, dummy;
-    int sks, jumlahJam;
+    String dummy;
 
     System.out.print("Kode         : ");
-    kode = sc.nextLine();
+    this.kode = sc.nextLine();
 
     System.out.print("Nama         : ");
-    nama = sc.nextLine();
+    this.nama = sc.nextLine();
 
     System.out.print("Sks          : ");
     dummy = sc.nextLine();
-    sks = Integer.parseInt(dummy);
+    this.sks = Integer.parseInt(dummy);
 
     System.out.print("Jumlah Jam   : ");
     dummy = sc.nextLine();
-    jumlahJam = Integer.parseInt(dummy);
+    this.jumlahJam = Integer.parseInt(dummy);
     System.out.println("--------------------------------------");
 
     sc.close();
