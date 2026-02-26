@@ -597,3 +597,25 @@ output akan sama persis dengan sebelumnya
 tersebut di class MatakuliahDemo untuk menampilkan data hasil inputan di layar"
 
 Jawaban:
+
+```java
+
+  public void cetakInfo() {
+    System.out.println("Kode               : " + this.kode);
+    System.out.println("nama               : " + this.nama);
+    System.out.println("Sks                : " + this.sks);
+    System.out.println("Jumlah jam         : " + this.jumlahJam);
+    System.out.println("--------------------------------------");
+  }
+
+```
+
+penggunaan:
+
+```java
+for (int i = 0; i < 3; i++) {
+  System.out.println("Data MataKuliah ke-" + (i + 1));
+  arrayOfMataKuliah[i].cetakInfo();
+}
+
+```

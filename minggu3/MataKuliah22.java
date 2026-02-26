@@ -38,4 +38,12 @@ public class MataKuliah22 {
     sc.close();
   }
 
+  public void cetakInfo() {
+    System.out.println("Kode               : " + this.kode);
+    System.out.println("nama               : " + this.nama);
+    System.out.println("Sks                : " + this.sks);
+    System.out.println("Jumlah jam         : " + this.jumlahJam);
+    System.out.println("--------------------------------------");
+  }
+
 }
