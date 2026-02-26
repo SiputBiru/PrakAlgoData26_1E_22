@@ -487,3 +487,113 @@ Sks : 3
 Jumlah jam : 19
 --------------------------------------
 ```
+
+### Jawaban pertanyaan
+
+1\. pertanyaan: "Apakah suatu class dapat memiliki lebih dari 1 constructor? Jika iya, berikan contohnya"
+Jawaban:
+Ya, suatu class bisa memiliki lebih dari satu constructor. Ini disebut *constructor overloading*.
+
+contoh:
+
+```java
+class Mahasiswa {
+    String nama;
+    int nim;
+
+    // Constructor tanpa parameter
+    Mahasiswa() {
+        System.out.println("Constructor default dipanggil");
+    }
+
+    // Constructor dengan 1 parameter
+    Mahasiswa(String nama) {
+        this.nama = nama;
+    }
+
+    // Constructor dengan 2 parameter
+    Mahasiswa(String nama, int nim) {
+        this.nama = nama;
+        this.nim = nim;
+    }
+}
+```
+
+cara penggunaan:
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Mahasiswa mhs1 = new Mahasiswa();                  
+        Mahasiswa mhs2 = new Mahasiswa("Budi");            
+        Mahasiswa mhs3 = new Mahasiswa("Siti", 12345);     
+    }
+}
+```
+
+dengan ini kita lebih fleksibel saat melakukan instansiasi sebuah object
+
+2\. pertanyaan: "Tambahkan method tambahData() pada class Matakuliah, kemudian gunakan method tersebut di class MatakuliahDemo untuk menambahkan data Matakuliah"
+
+jawaban:
+
+```java
+import java.util.Scanner;
+
+public class MataKuliah22 {
+
+  public String kode;
+  public String nama;
+  public int sks;
+  public int jumlahJam;
+
+  public MataKuliah22(String kode, String nama, int sks, int jumlahJam) {
+    this.kode = kode;
+    this.nama = nama;
+    this.sks = sks;
+    this.jumlahJam = jumlahJam;
+  }
+
+  public void tambahData() {
+    Scanner sc = new Scanner(System.in);
+
+    String kode, nama, dummy;
+    int sks, jumlahJam;
+
+    System.out.print("Kode         : ");
+    kode = sc.nextLine();
+
+    System.out.print("Nama         : ");
+    nama = sc.nextLine();
+
+    System.out.print("Sks          : ");
+    dummy = sc.nextLine();
+    sks = Integer.parseInt(dummy);
+
+    System.out.print("Jumlah Jam   : ");
+    dummy = sc.nextLine();
+    jumlahJam = Integer.parseInt(dummy);
+    System.out.println("--------------------------------------");
+
+    sc.close();
+  }
+
+}
+
+```
+
+penggunaan:
+
+```java
+for (int i = 0; i < 3; i++) {
+  System.out.println("Masukkan Data MataKuliah ke-" + (i + 1));
+  arrayOfMataKuliah[i].tambahData();
+}
+```
+
+output akan sama persis dengan sebelumnya
+
+3\. Pertanyaan: "Tambahkan method cetakInfo() pada class Matakuliah, kemudian gunakan method
+tersebut di class MatakuliahDemo untuk menampilkan data hasil inputan di layar"
+
+Jawaban:

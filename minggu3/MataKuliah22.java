@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class MataKuliah22 {
 
   public String kode;
@@ -10,6 +12,30 @@ public class MataKuliah22 {
     this.nama = nama;
     this.sks = sks;
     this.jumlahJam = jumlahJam;
+  }
+
+  public void tambahData() {
+    Scanner sc = new Scanner(System.in);
+
+    String kode, nama, dummy;
+    int sks, jumlahJam;
+
+    System.out.print("Kode         : ");
+    kode = sc.nextLine();
+
+    System.out.print("Nama         : ");
+    nama = sc.nextLine();
+
+    System.out.print("Sks          : ");
+    dummy = sc.nextLine();
+    sks = Integer.parseInt(dummy);
+
+    System.out.print("Jumlah Jam   : ");
+    dummy = sc.nextLine();
+    jumlahJam = Integer.parseInt(dummy);
+    System.out.println("--------------------------------------");
+
+    sc.close();
   }
 
 }
