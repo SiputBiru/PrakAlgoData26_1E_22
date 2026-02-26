@@ -1,61 +1,76 @@
+import java.util.Scanner;
+
 public class MahasiswaDemo22 {
+
   public static void main(String[] args) {
+
+    Scanner sc = new Scanner(System.in);
     Mahasiswa22[] arrayOfMahasiswa = new Mahasiswa22[3];
+    String dummy;
 
-    arrayOfMahasiswa[0] = new Mahasiswa22();
-    arrayOfMahasiswa[0].nim = "244107060033";
-    arrayOfMahasiswa[0].nama = "AGNES TITANIA KINANTI";
-    arrayOfMahasiswa[0].kelas = "SIB-1E";
-    arrayOfMahasiswa[0].ipk = (float) 3.75;
+    for (int i = 0; i < 3; i++) {
+      arrayOfMahasiswa[i] = new Mahasiswa22();
+      System.out.println("Masukkan Data Mahasiswa ke-" + (i + 1));
+      System.out.print("NIM        : ");
+      arrayOfMahasiswa[i].nim = sc.nextLine();
+      System.out.print("Nama       : ");
+      arrayOfMahasiswa[i].nama = sc.nextLine();
+      System.out.print("Kelas      : ");
+      arrayOfMahasiswa[i].kelas = sc.nextLine();
+      System.out.print("IPK        : ");
+      dummy = sc.nextLine();
+      arrayOfMahasiswa[i].ipk = Float.parseFloat(dummy);
+      System.out.println("----------------------------------------");
 
-    arrayOfMahasiswa[1] = new Mahasiswa22();
-    arrayOfMahasiswa[1].nim = "234170172";
-    arrayOfMahasiswa[1].nama = "ACHMAD MAULANA HAMZAH";
-    arrayOfMahasiswa[1].kelas = "TI-2A";
-    arrayOfMahasiswa[1].ipk = (float) 3.36;
+    }
 
-    arrayOfMahasiswa[2] = new Mahasiswa22();
-    arrayOfMahasiswa[2].nim = "244107023006";
-    arrayOfMahasiswa[2].nama = "DIRHAMAWAN PUTRANTO";
-    arrayOfMahasiswa[2].kelas = "TI-2E";
-    arrayOfMahasiswa[2].ipk = (float) 3.80;
+    sc.close();
 
-    System.out.println("NIM      : " + arrayOfMahasiswa[0].nim);
-    System.out.println("Nama     : " + arrayOfMahasiswa[0].nama);
-    System.out.println("Kelas    : " + arrayOfMahasiswa[0].kelas);
-    System.out.println("IPK      : " + arrayOfMahasiswa[0].ipk);
-    System.out.println("----------------------------------------");
-
-    System.out.println("NIM      : " + arrayOfMahasiswa[1].nim);
-    System.out.println("Nama     : " + arrayOfMahasiswa[1].nama);
-    System.out.println("Kelas    : " + arrayOfMahasiswa[1].kelas);
-    System.out.println("IPK      : " + arrayOfMahasiswa[1].ipk);
-    System.out.println("----------------------------------------");
-
-    System.out.println("NIM      : " + arrayOfMahasiswa[2].nim);
-    System.out.println("Nama     : " + arrayOfMahasiswa[2].nama);
-    System.out.println("Kelas    : " + arrayOfMahasiswa[2].kelas);
-    System.out.println("IPK      : " + arrayOfMahasiswa[2].ipk);
-    System.out.println("----------------------------------------");
-
+    for (int i = 0; i < 3; i++) {
+      System.out.println("Data mahasiswa ke-" + (i + 1));
+      System.out.println("NIM      : " + arrayOfMahasiswa[i].nim);
+      System.out.println("Nama     : " + arrayOfMahasiswa[i].nama);
+      System.out.println("Kelas    : " + arrayOfMahasiswa[i].kelas);
+      System.out.println("IPK      : " + arrayOfMahasiswa[i].ipk);
+      System.out.println("----------------------------------------");
+    }
     /*
-     * PrakAlgoData26_1E_22/minggu3 main ? ❯ java Mahasiswa22.java
-     * NIM : 244107060033
-     * Nama : AGNES TITANIA KINANTI
-     * Kelas : SIB-1E
-     * IPK : 3.75
+     * Masukkan Data Mahasiswa ke-1
+     * NIM : 322349009
+     * Nama : andiryana
+     * Kelas : 1E-TI
+     * IPK : 4.00
      * ----------------------------------------
-     * NIM : 234170172
-     * Nama : ACHMAD MAULANA HAMZAH
-     * Kelas : TI-2A
-     * IPK : 3.36
+     * Masukkan Data Mahasiswa ke-2
+     * NIM : 03294892304
+     * Nama : andiryana
+     * Kelas : 1E-TI
+     * IPK : 3.95
      * ----------------------------------------
-     * NIM : 244107023006
-     * Nama : DIRHAMAWAN PUTRANTO
-     * Kelas : TI-2E
-     * IPK : 3.8
+     * Masukkan Data Mahasiswa ke-3
+     * NIM : 2034983204
+     * Nama : Adnirya
+     * Kelas : 1E-TI
+     * IPK : 3.5
      * ----------------------------------------
-     * 
+     * Data mahasiswa ke-1
+     * NIM : 322349009
+     * Nama : andiryana
+     * Kelas : 1E-TI
+     * IPK : 4.0
+     * ----------------------------------------
+     * Data mahasiswa ke-2
+     * NIM : 03294892304
+     * Nama : andiryana
+     * Kelas : 1E-TI
+     * IPK : 3.95
+     * ----------------------------------------
+     * Data mahasiswa ke-3
+     * NIM : 2034983204
+     * Nama : Adnirya
+     * Kelas : 1E-TI
+     * IPK : 3.5
+     * ----------------------------------------
      */
   }
 }
