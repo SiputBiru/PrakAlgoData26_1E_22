@@ -197,3 +197,176 @@ Jawaban:
 hal tersebut berguana untuk membagi tugas, MahasiswaDemo22 class hanya memiliki tugas main yang akan dipanggil oleh compiler sedangkan Mahasiswa22 class hanya memiliki tugas sebagai blueprint oleh object yang akan digunakan pada MahasiswaDemo22.
 
 ## Percobaan 2: Menerima Input Isian Array Menggunakan Looping
+
+kode program:
+
+```java
+import java.util.Scanner;
+
+public class MahasiswaDemo22 {
+
+  public static void main(String[] args) {
+
+    Scanner sc = new Scanner(System.in);
+    Mahasiswa22[] arrayOfMahasiswa = new Mahasiswa22[3];
+    String dummy;
+
+    for (int i = 0; i < 3; i++) {
+      arrayOfMahasiswa[i] = new Mahasiswa22();
+      System.out.println("Masukkan Data Mahasiswa ke-" + (i + 1));
+      System.out.print("NIM        : ");
+      arrayOfMahasiswa[i].nim = sc.nextLine();
+      System.out.print("Nama       : ");
+      arrayOfMahasiswa[i].nama = sc.nextLine();
+      System.out.print("Kelas      : ");
+      arrayOfMahasiswa[i].kelas = sc.nextLine();
+      System.out.print("IPK        : ");
+      dummy = sc.nextLine();
+      arrayOfMahasiswa[i].ipk = Float.parseFloat(dummy);
+      System.out.println("----------------------------------------");
+
+    }
+
+    sc.close();
+
+    for (int i = 0; i < 3; i++) {
+      System.out.println("Data mahasiswa ke-" + (i + 1));
+      System.out.println("NIM      : " + arrayOfMahasiswa[i].nim);
+      System.out.println("Nama     : " + arrayOfMahasiswa[i].nama);
+      System.out.println("Kelas    : " + arrayOfMahasiswa[i].kelas);
+      System.out.println("IPK      : " + arrayOfMahasiswa[i].ipk);
+      System.out.println("----------------------------------------");
+    }
+  }
+}
+```
+
+output: `java MahasiswaDemo22.java`
+
+```bash
+Masukkan Data Mahasiswa ke-1
+NIM : 322349009
+Nama : andiryana
+Kelas : 1E-TI
+IPK : 4.00
+----------------------------------------
+Masukkan Data Mahasiswa ke-2
+NIM : 03294892304
+Nama : andiryana
+Kelas : 1E-TI
+IPK : 3.95
+----------------------------------------
+Masukkan Data Mahasiswa ke-3
+NIM : 2034983204
+Nama : Adnirya
+Kelas : 1E-TI
+IPK : 3.5
+----------------------------------------
+Data mahasiswa ke-1
+NIM : 322349009
+Nama : andiryana
+Kelas : 1E-TI
+IPK : 4.0
+----------------------------------------
+Data mahasiswa ke-2
+NIM : 03294892304
+Nama : andiryana
+Kelas : 1E-TI
+IPK : 3.95
+----------------------------------------
+Data mahasiswa ke-3
+NIM : 2034983204
+Nama : Adnirya
+Kelas : 1E-TI
+IPK : 3.5
+----------------------------------------
+```
+
+### Jawaban pertanyaan
+
+1\. Pertanyaan: "Tambahkan method cetakInfo() pada class Mahasiswa kemudian modifikasi kode program
+pada langkah no 3."
+
+Mahasiswa22
+
+```java
+public class Mahasiswa22 {
+
+  public String nim;
+  public String nama;
+  public String kelas;
+  public float ipk;
+
+  public void cetakInfo() {
+    System.out.println("NIM      : " + this.nim);
+    System.out.println("Nama     : " + this.nama);
+    System.out.println("Kelas    : " + this.kelas);
+    System.out.println("IPK      : " + this.ipk);
+    System.out.println("----------------------------------------");
+  }
+}
+```
+
+MahasiswaDemo22
+
+```java
+    for (int i = 0; i < 3; i++) {
+      System.out.println("Data mahasiswa ke-" + (i + 1));
+      arrayOfMahasiswa[i].cetakInfo();
+    }
+```
+
+hasilnya akan sama persis:
+
+```bash
+java MahasiswaDemo22.java
+Masukkan Data Mahasiswa ke-1
+NIM        : 203482394
+Nama       : Adnirya
+Kelas      : 1E-TI
+IPK        : 4.00
+----------------------------------------
+Masukkan Data Mahasiswa ke-2
+NIM        : 203942394
+Nama       : Afrindya
+Kelas      : 1E-TI
+IPK        : 3.95
+----------------------------------------
+Masukkan Data Mahasiswa ke-3
+NIM        : 230489234
+Nama       : Afiyda
+Kelas      : 1E-TI
+IPK        : 3.45
+----------------------------------------
+Data mahasiswa ke-1
+NIM      : 203482394
+Nama     : Adnirya
+Kelas    : 1E-TI
+IPK      : 4.0
+----------------------------------------
+Data mahasiswa ke-2
+NIM      : 203942394
+Nama     : Afrindya
+Kelas    : 1E-TI
+IPK      : 3.95
+----------------------------------------
+Data mahasiswa ke-3
+NIM      : 230489234
+Nama     : Afiyda
+Kelas    : 1E-TI
+IPK      : 3.45
+----------------------------------------
+```
+
+2\. Pertanyaan: "Misalkan Anda punya array baru bertipe array of Mahasiswa dengan nama
+myArrayOfMahasiswa. Mengapa kode berikut menyebabkan error?"
+
+```java
+    Mahasiswa22[] arrayOfMahasiswa = new Mahasiswa22[3];
+    arrayOfMahasiswa[0].nim = "244107060033";
+    arrayOfMahasiswa[0].nama = "AGNES TITANIA KINANTI";
+    arrayOfMahasiswa[0].kelas = "SIB-1E";
+    arrayOfMahasiswa[0].ipk = (float) 3.75;
+```
+
+hal tersebut mengeluarkan error dikarenakan pada saat memberikan nilai pada `arrayOfMahasiswa[0].nim` kita memerlukan untuk instansiasi pada indeks 0 dulu dikarenakan element object `arrayOfMahasiswa[0]` masih kosong/belum di instansiasi.
