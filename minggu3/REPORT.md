@@ -574,8 +574,6 @@ public class MataKuliah22 {
     dummy = sc.nextLine();
     jumlahJam = Integer.parseInt(dummy);
     System.out.println("--------------------------------------");
-
-    sc.close();
   }
 
 }
@@ -654,6 +652,7 @@ Jawaban:
 ```
 
 ```bash
+> java MataKuliahDemo22.java
 Berapa banyak data Matakuliah yang ingin di input?
 1
 Masukkan Data MataKuliah ke-1
@@ -668,4 +667,34 @@ nama               : Matdas
 Sks                : 4
 Jumlah jam         : 4
 --------------------------------------
+```
+
+## Tugas
+
+1\. Pertanyaan:
+
+Buatlah program untuk menampilkan informasi tentang dosen. Program dapat menerima input
+semua informasi terkait dosen dan menampilkanya kembali ke layar. Program ini terdiri dari class
+Dosen<NoPresensi> dengan attribute/property sebagai berikut;
+
+```java
+String kode
+String nama
+Boolean jenisKelamin
+int usia
+
+// dengan methode constructor sebagai berikut;
+public dosen(String kode, String nama, Boolean jenisKelamin, int usia) {
+      …………….;
+      …………….;
+}
+```
+
+Kemudian buatlah class DosenDemo<NoPresensi> untuk proses input dan menampilkan data
+beberapa dosen. Gunakan looping dengan FOR untuk pembuatan array of object. Gunakan
+looping dengan FOREACH untuk menampilkan data ke layar.
+<br>
+Contoh output sebagai berikut:
+
+```bash
 ```
