@@ -186,3 +186,52 @@ public class MainPangkat22 {
 }
 
 ```
+
+### Jawaban pertanyaan
+
+1\. Jelaskan mengenai perbedaan 2 method yang dibuat yaitu `pangkatBF()` dan `pangkatDC()`!
+
+Jawaban:
+Method `pangkatBF()` menggunakan pendekatan **iteratif (brute force)** dengan perulangan untuk mengalikan nilai basis sebanyak `n` kali sehingga prosesnya linear `(O(n))`, sedangkan `pangkatDC()` menggunakan pendekatan divide and conquer **(rekursif)** dengan membagi pangkat menjadi setengah `(n/2)`, kemudian menggabungkan hasilnya sehingga lebih efisien dengan kompleksitas `O(log n)`. penjelasan lengkah tentang Big O notation dapat dilihat dari [link](https://en.wikipedia.org/wiki/Big_O_notation)
+
+2\. Apakah tahap combine sudah termasuk dalam kode tersebut? Tunjukkan!
+
+Jawaban:
+
+tahapan combine berapa pada bagian
+
+```java
+return (pangkatDC(a, n / 2) * pangkatDC(a, n / 2) * a);
+```
+
+dan juga:
+
+```java
+return (pangkatDC(a, n / 2) * pangkatDC(a, n / 2));
+```
+
+Bagian tersebut merupakan proses **combine**, karena menggabungkan hasil dari subproblem menjadi solusi akhir.
+
+3\. Pada method `pangkatBF()` terdapat parameter untuk melewatkan nilai yang akan dipangkatkan dan pangkat berapa, padahal di sisi lain di class `Pangkat` telah ada atribut `nilai` dan `pangkat`, apakah menurut Anda method tersebut tetap relevan untuk memiliki parameter? Apakah bisa jika method tersebut dibuat dengan tanpa parameter? Jika bisa, seperti apa method `pangkatBF()` yang tanpa parameter?
+
+Jawaban:
+
+pada method `pangkatBF()` sebenarnya tidak diwajibkan memiliki parameter, kerena nilai `nilai` dan `pangkat` sudah tersedia sebagai atribut dalam class. Method dapat menggunakan atribut tersebut tanpa parameter agar lebih singkat.
+
+contoh tanpa parameter:
+
+```java
+int pangkatBF() {
+  int hasil = 1;
+  for (int i = 0; i < pangkat; i++) {
+    hasil = hasil * nilai;
+  }
+  return hasil;
+}
+```
+
+4\. Tarik tentang cara kerja method `pangkatBF()` dan `pangkatDC()`!
+
+Jawaban:
+
+Dari percobaan yang telah dilakukan dapat disimpukan bahwa Method `pangkatBF()` bekerja dengan cara mengalikan nilai secara berulang dari 1 hingga n menggunakan perulangan, sehingga prosesnya langsung dan sederhana. Sedangkan `pangkatDC()` bekerja dengan cara memecah masalah menjadi lebih kecil menggunakan rekursi (`n/2`), lalu menggabungkan hasilnya kembali, sehingga lebih efisien karena jumlah operasi lebih sedikit.
