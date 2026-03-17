@@ -187,6 +187,29 @@ public class MainPangkat22 {
 
 ```
 
+hasil dijalankannya program:
+
+```bash
+Masukkan jumlah elemen: 3
+Masukkan nilai basis elemen ke-1: 2
+Masukkan nilai pangkat elemen ke-1: 3
+Masukkan nilai basis elemen ke-2: 4
+Masukkan nilai pangkat elemen ke-2: 5
+Masukkan nilai basis elemen ke-3: 6
+Masukkan nilai pangkat elemen ke-3: 7
+
+HASIL PANGKAT BRUTEFORCE:
+2^3: 8
+4^5: 1024
+6^7: 279936
+
+HASIL PANGKAT DIVIDE AND CONQUER:
+2^3: 8
+4^5: 1024
+6^7: 279936
+
+```
+
 ### Jawaban pertanyaan
 
 1\. Jelaskan mengenai perbedaan 2 method yang dibuat yaitu `pangkatBF()` dan `pangkatDC()`!
@@ -302,6 +325,20 @@ public class MainSum {
 }
 ```
 
+hasil dijalankannya program:
+
+```bash
+Masukkan jumlah elemen: 5
+Masukkan keuntungan ke-1: 10
+Masukkan keuntungan ke-2: 20
+Masukkan keuntungan ke-3: 30
+Masukkan keuntungan ke-4: 40
+Masukkan keuntungan ke-5: 50
+
+Total keuntungan menggunakan BruteForce: 150.0
+Total keuntungan menggunakan Divide and Conquer: 150.0
+```
+
 ### Jawaban pertanyaan
 
 1\. Kenapa dibutuhkan variable `mid` pada method `TotalDC()`?
@@ -320,7 +357,7 @@ jawaban:
 Statement tersebut digunakan untuk membagi masalah menjadi dua bagian:
 
 - `lsum` menghitung total bagian kiri array
-= `rsum` menghitung total bagian kanan array
+- `rsum` menghitung total bagian kanan array
 
 Keduanya merupakan proses divide dan conquer (rekursi) terhadap sub-array.
 
@@ -476,4 +513,12 @@ public class MainNilai {
     System.out.println("Rata-rata UAS (BF): " + rata);
   }
 }
+```
+
+hasil dijalankannya program:
+
+```bash
+Nilai UTS tertinggi (DC): 92
+Nilai UTS terendah (DC): 76
+Rata-rata UAS (BF): 85.375
 ```
