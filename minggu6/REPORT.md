@@ -778,3 +778,157 @@ public class DataDosen22 {
   }
 }
 ```
+
+output:
+
+```bash
+java DosenDemo22.java < ./1.in
+
+=== MENU DATA DOSEN ===
+1. Tambah Data
+2. Tampil Data
+3. Sorting ASC (Termuda)
+4. Sorting DSC (Tertua)
+5. Keluar
+Pilih menu: Kode: Nama: Pria (true/false): Usia:
+=== MENU DATA DOSEN ===
+1. Tambah Data
+2. Tampil Data
+3. Sorting ASC (Termuda)
+4. Sorting DSC (Tertua)
+5. Keluar
+Pilih menu: Kode: Nama: Pria (true/false): Usia:
+=== MENU DATA DOSEN ===
+1. Tambah Data
+2. Tampil Data
+3. Sorting ASC (Termuda)
+4. Sorting DSC (Tertua)
+5. Keluar
+Pilih menu: Kode: Nama: Pria (true/false): Usia:
+=== MENU DATA DOSEN ===
+1. Tambah Data
+2. Tampil Data
+3. Sorting ASC (Termuda)
+4. Sorting DSC (Tertua)
+5. Keluar
+Pilih menu:
+--- Daftar Dosen ---
+Kode          : D01
+Nama          : Dr. Andi
+Jenis Kelamin : Pria
+Usia          : 45
+-----------------------------
+Kode          : D02
+Nama          : Rina M.Kom
+Jenis Kelamin : Wanita
+Usia          : 30
+-----------------------------
+Kode          : D03
+Nama          : Budi Ph.D
+Jenis Kelamin : Pria
+Usia          : 55
+-----------------------------
+=== MENU DATA DOSEN ===
+1. Tambah Data
+2. Tampil Data
+3. Sorting ASC (Termuda)
+4. Sorting DSC (Tertua)
+5. Keluar
+Pilih menu:
+Data berhasil diurutkan (ASC)...
+Kode          : D02
+Nama          : Rina M.Kom
+Jenis Kelamin : Wanita
+Usia          : 30
+-----------------------------
+Kode          : D01
+Nama          : Dr. Andi
+Jenis Kelamin : Pria
+Usia          : 45
+-----------------------------
+Kode          : D03
+Nama          : Budi Ph.D
+Jenis Kelamin : Pria
+Usia          : 55
+-----------------------------
+
+=== MENU DATA DOSEN ===
+1. Tambah Data
+2. Tampil Data
+3. Sorting ASC (Termuda)
+4. Sorting DSC (Tertua)
+5. Keluar
+Pilih menu:
+--- Daftar Dosen ---
+Kode          : D02
+Nama          : Rina M.Kom
+Jenis Kelamin : Wanita
+Usia          : 30
+-----------------------------
+Kode          : D01
+Nama          : Dr. Andi
+Jenis Kelamin : Pria
+Usia          : 45
+-----------------------------
+Kode          : D03
+Nama          : Budi Ph.D
+Jenis Kelamin : Pria
+Usia          : 55
+-----------------------------
+
+=== MENU DATA DOSEN ===
+1. Tambah Data
+2. Tampil Data
+3. Sorting ASC (Termuda)
+4. Sorting DSC (Tertua)
+5. Keluar
+Pilih menu:
+Data berhasil diurutkan (DSC)...
+Kode          : D03
+Nama          : Budi Ph.D
+Jenis Kelamin : Pria
+Usia          : 55
+-----------------------------
+Kode          : D01
+Nama          : Dr. Andi
+Jenis Kelamin : Pria
+Usia          : 45
+-----------------------------
+Kode          : D02
+Nama          : Rina M.Kom
+Jenis Kelamin : Wanita
+Usia          : 30
+-----------------------------
+
+=== MENU DATA DOSEN ===
+1. Tambah Data
+2. Tampil Data
+3. Sorting ASC (Termuda)
+4. Sorting DSC (Tertua)
+5. Keluar
+Pilih menu:
+--- Daftar Dosen ---
+Kode          : D03
+Nama          : Budi Ph.D
+Jenis Kelamin : Pria
+Usia          : 55
+-----------------------------
+Kode          : D01
+Nama          : Dr. Andi
+Jenis Kelamin : Pria
+Usia          : 45
+-----------------------------
+Kode          : D02
+Nama          : Rina M.Kom
+Jenis Kelamin : Wanita
+Usia          : 30
+-----------------------------
+
+=== MENU DATA DOSEN ===
+1. Tambah Data
+2. Tampil Data
+3. Sorting ASC (Termuda)
+4. Sorting DSC (Tertua)
+5. Keluar
+Pilih menu:
+```
