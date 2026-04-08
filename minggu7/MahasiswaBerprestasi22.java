@@ -1,8 +1,8 @@
 public class MahasiswaBerprestasi22 {
   // kita ubah menjadi dinamis
-  Mahasiswa22 listMhs[] = new Mahasiswa22[5];
+  // Mahasiswa22 listMhs[] = new Mahasiswa22[5];
 
-  // Mahasiswa22 listMhs[];
+  Mahasiswa22 listMhs[];
   int idx;
 
   public MahasiswaBerprestasi22(int kapasitas) {

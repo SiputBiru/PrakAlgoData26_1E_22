@@ -2,11 +2,16 @@ import java.util.Scanner;
 
 public class MahasiswaDemo22 {
   public static void main(String[] args) {
-    MahasiswaBerprestasi22 list = new MahasiswaBerprestasi22(5);
     Scanner sc = new Scanner(System.in);
 
-    int jumMhs = 5;
+    // Kita buat banyak imput dinamis
+    // int jumMhs = 5;
 
+    System.out.print("Masukkan jumlah mahasiswa: ");
+    int jumMhs = sc.nextInt();
+    sc.nextLine(); // membersihkan buffer
+
+    MahasiswaBerprestasi22 list = new MahasiswaBerprestasi22(jumMhs);
     for (int i = 0; i < jumMhs; i++) {
       System.out.println("Masukkan Data Mahasiswa ke-" + (i + 1));
       System.out.print("NIM    : ");
@@ -55,5 +60,7 @@ public class MahasiswaDemo22 {
     // Menampilkan hasil pencarian
     list.tampilPosisi(cari, posisi2);
     list.tampilDataSearch(cari, posisi2);
+
+    sc.close();
   }
 }

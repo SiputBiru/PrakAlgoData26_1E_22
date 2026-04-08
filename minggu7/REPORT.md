@@ -318,3 +318,203 @@ MahasiswaBerprestasi22.java
   }
 
 ```
+
+output:
+
+```bash
+java MahasiswaDemo22.java < ./test.in
+Masukkan Data Mahasiswa ke-1
+NIM    : Nama   : Kelas  : IPK    : ------------------------------------
+Masukkan Data Mahasiswa ke-2
+NIM    : Nama   : Kelas  : IPK    : ------------------------------------
+Masukkan Data Mahasiswa ke-3
+NIM    : Nama   : Kelas  : IPK    : ------------------------------------
+Masukkan Data Mahasiswa ke-4
+NIM    : Nama   : Kelas  : IPK    : ------------------------------------
+Masukkan Data Mahasiswa ke-5
+NIM    : Nama   : Kelas  : IPK    : ------------------------------------
+Nama: adi
+NIM: 111
+kelas: 2
+IPK: 3.6
+---------------------------------
+Nama: tio
+NIM: 222
+kelas: 2
+IPK: 3.8
+---------------------------------
+Nama: ila
+NIM: 333
+kelas: 2
+IPK: 3.0
+---------------------------------
+Nama: lia
+NIM: 444
+kelas: 2
+IPK: 3.5
+---------------------------------
+Nama: fia
+NIM: 555
+kelas: 2
+IPK: 3.3
+---------------------------------
+-------------------------------------------------------
+Pencarian data
+-------------------------------------------------------
+masukkan ipk mahasiswa yang dicari:
+IPK: -------------------------------------------------------
+menggunakan binary search
+-------------------------------------------------------
+data Mahasiswa dengan IPK :3.5 ditemukan pada indesk3
+nim      : 444
+nama     : lia
+kelas    : 2
+ipk      : 3.5
+```
+
+### Jawaban pertanyaan
+
+1\. pertanyaan: "Tunjukkan pada kode program yang mana proses divide dijalankan!"
+
+Proses divide terjadi saat program membagi rentang pencarian menjadi dua bagian dengan mencari nilai tengahnya:
+
+```java
+int mid = left + (right - left) / 2;
+```
+
+2\. pertanyaan: "Tunjukkan pada kode program yang mana proses conquer dijalankan!"
+Proses conquer terjadi saat program memutuskan bagian mana yang akan diperiksa selanjutnya berdasarkan perbandingan nilai tengah dengan nilai yang dicari:
+
+```java
+if (listMhs[mid].ipk > cari) {
+    return findBinarySearch(cari, left, mid - 1); // Memeriksa bagian kiri
+} else {
+    return findBinarySearch(cari, mid + 1, right); // Memeriksa bagian kanan
+}
+```
+
+3\. pertanyaan: "Apa fungsi left, right, dan mid?"
+
+- left: Menyimpan indeks paling kiri (batas bawah) dari rentang pencarian saat ini.
+
+- right: Menyimpan indeks paling kanan (batas atas) dari rentang pencarian saat ini.
+
+- mid: Menyimpan indeks tengah hasil pembagian antara left dan right. Indeks ini yang nilainya akan dibandingkan dengan data yang dicari.
+
+4\. pertanyaan: "Jika data IPK yang dimasukkan tidak urut. Apakah program masih dapat berjalan? Mengapa demikian?"
+
+Secara teknis program akan berjalan (tidak error), namun hasilnya tidak akan akurat. Hal ini dikarenakan algoritma Binary Search bekerja berdasarkan asumsi bahwa data sudah terurut. Jika data acak, logika pembuangan setengah rentang pencarian (kiri/kanan) akan salah arah dan bisa melewatkan data yang sebenarnya ada.
+
+5\. pertanyaan: "Bagaimana hasil dari binary search jika data terurut besar ke kecil (descending)?""
+
+Hasilnya akan menunjukkan data tidak ditemukan meskipun datanya ada. Agar sesuai, kode perbandingan harus dibalik:
+
+```java
+// Untuk data descending (besar ke kecil)
+if (listMhs[mid].ipk < cari) { // cari di kiri jika mid lebih kecil dari target
+    return findBinarySearch(cari, left, mid - 1);
+} else {
+    return findBinarySearch(cari, mid + 1, right);
+}
+```
+
+6\. pertanyaan: "Jelaskan bagaimana binary search menentukan bahwa data yang dicari tidak ditemukan."
+
+Data dinyatakan tidak ditemukan apabila nilai left sudah lebih besar dari right (left > right). Ini berarti rentang pencarian sudah habis dipersempit namun nilai yang cocok tidak pernah ditemukan di posisi mid.
+
+7\. pertanyaan: "Modifikasi Program (Jumlah Mahasiswa dari Keyboard)"
+
+Untuk memenuhi soal nomor 7, kita perlu mengubah sedikit bagian main agar meminta input jumlah mahasiswa terlebih dahulu:
+
+```java
+public class MahasiswaDemo22 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // MODIFIKASI: Input jumlah mahasiswa dari keyboard
+        System.out.print("Masukkan jumlah mahasiswa: ");
+        int jumMhs = sc.nextInt();
+        sc.nextLine(); // membersihkan buffer
+
+        MahasiswaBerprestasi22 list = new MahasiswaBerprestasi22(jumMhs);
+
+        for (int i = 0; i < jumMhs; i++) {
+            System.out.println("Masukkan Data Mahasiswa ke-" + (i + 1));
+            System.out.print("NIM    : ");
+            String nim = sc.nextLine();
+            System.out.print("Nama   : ");
+            String nama = sc.nextLine();
+            System.out.print("Kelas  : ");
+            String kelas = sc.nextLine();
+            System.out.print("IPK    : ");
+            double ipk = sc.nextDouble(); // Langsung nextDouble
+            sc.nextLine(); // membersihkan buffer
+            System.out.println("------------------------------------");
+
+            list.tambah(new Mahasiswa22(nim, nama, kelas, ipk));
+        }
+        
+        // ... sisa kode (sorting & searching) ...
+    }
+}
+```
+
+output:
+
+```bash
+java MahasiswaDemo22.java < ./test2.in
+Masukkan jumlah mahasiswa: Masukkan Data Mahasiswa ke-1
+NIM    : Nama   : Kelas  : IPK    : ------------------------------------
+Masukkan Data Mahasiswa ke-2
+NIM    : Nama   : Kelas  : IPK    : ------------------------------------
+Masukkan Data Mahasiswa ke-3
+NIM    : Nama   : Kelas  : IPK    : ------------------------------------
+Masukkan Data Mahasiswa ke-4
+NIM    : Nama   : Kelas  : IPK    : ------------------------------------
+Masukkan Data Mahasiswa ke-5
+NIM    : Nama   : Kelas  : IPK    : ------------------------------------
+Masukkan Data Mahasiswa ke-6
+NIM    : Nama   : Kelas  : IPK    : ------------------------------------
+Nama: adi
+NIM: 111
+kelas: 2
+IPK: 3.6
+---------------------------------
+Nama: tio
+NIM: 222
+kelas: 2
+IPK: 3.8
+---------------------------------
+Nama: ila
+NIM: 333
+kelas: 2
+IPK: 3.0
+---------------------------------
+Nama: lia
+NIM: 444
+kelas: 2
+IPK: 3.5
+---------------------------------
+Nama: fia
+NIM: 555
+kelas: 2
+IPK: 3.3
+---------------------------------
+Nama: 555
+NIM: 3.5
+kelas: udin
+IPK: 3.7
+---------------------------------
+-------------------------------------------------------
+Pencarian data
+-------------------------------------------------------
+masukkan ipk mahasiswa yang dicari:
+IPK: -------------------------------------------------------
+menggunakan binary search
+-------------------------------------------------------
+data Mahasiswa dengan IPK :3.3 ditemukan pada indesk4
+nim      : 555
+nama     : fia
+kelas    : 2
+ipk      : 3.3
+```
