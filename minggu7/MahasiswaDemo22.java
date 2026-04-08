@@ -25,6 +25,20 @@ public class MahasiswaDemo22 {
 
     list.tampil();
 
+    // System.out.println("-------------------------------------------------------");
+    // System.out.println("Pencarian data");
+    // System.out.println("-------------------------------------------------------");
+    // System.out.println("masukkan ipk mahasiswa yang dicari: ");
+    // System.out.print("IPK: ");
+    // double cari = sc.nextDouble();
+    // System.out.println("menggunakan sequential searching");
+    // double posisi = list.sequentialSearching(cari);
+    // int pss = (int) posisi;
+    // System.out.println("menggunakan Binary searching");
+    // list.tampilPosisi(cari, pss);
+    // list.tampilDataSearch(cari, pss);
+
+    // melakukan pencarian data Binary
     System.out.println("-------------------------------------------------------");
     System.out.println("Pencarian data");
     System.out.println("-------------------------------------------------------");
@@ -32,12 +46,14 @@ public class MahasiswaDemo22 {
     System.out.print("IPK: ");
     double cari = sc.nextDouble();
 
-    System.out.println("menggunakan sequential searching");
+    System.out.println("-------------------------------------------------------");
+    System.out.println("menggunakan binary search");
+    System.out.println("-------------------------------------------------------");
 
-    double posisi = list.sequentialSearching(cari);
-    int pss = (int) posisi;
+    int posisi2 = list.findBinarySearch(cari, 0, jumMhs - 1);
 
-    list.tampilPosisi(cari, pss);
-    list.tampilDataSearch(cari, pss);
+    // Menampilkan hasil pencarian
+    list.tampilPosisi(cari, posisi2);
+    list.tampilDataSearch(cari, posisi2);
   }
 }

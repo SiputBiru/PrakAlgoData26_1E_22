@@ -291,3 +291,30 @@ Fungsi break: Digunakan untuk menghentikan paksa perulangan (for) segera setelah
 - Jika ada data dengan nilai yang sama (duplikat), variabel `posisi` akan terus diperbarui dan hasil akhirnya adalah indeks dari data yang terakhir ditemukan (data dengan indeks terbesar).
 
 - Secara performa, program menjadi kurang efisien karena melakukan iterasi yang tidak diperlukan setelah target ditemukan.
+
+## Percobaan 2: Searching/Pencarian Menggunakan Algoritma Binary Search
+
+kode program:
+
+MahasiswaBerprestasi22.java
+
+```java
+  int findBinarySearch(double cari, int left, int right) {
+
+    int mid;
+    if (right >= left) {
+      mid = (left + right) / 2;
+      if (cari == listMhs[mid].ipk) {
+        return mid;
+      } else if (listMhs[mid].ipk > cari) {
+        return findBinarySearch(cari, left, mid);
+      } else {
+        return findBinarySearch(cari, mid + 1, right);
+      }
+
+    }
+
+    return -1;
+  }
+
+```
