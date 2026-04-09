@@ -26,17 +26,15 @@ Digunakan untuk mengurutkan daftar peminjaman berdasarkan Denda secara Descendin
 
 lengkapnya bisa dilihat dari [geeksforgeeks.org](https://www.geeksforgeeks.org/dsa/merge-sort/)
 
-### B. Pencarian (Sequential Search)
+### B. Pencarian (Binary Search)
 
-Digunakan untuk method Cari Berdasarkan NIM.
+Digunakan untuk fitur Cari Berdasarkan NIM. Algoritma ini jauh lebih cepat dibandingkan pencarian berurutan pada data yang besar.
 
-- Program melakukan iterasi (perulangan) dari awal hingga akhir array dataPeminjaman.
+- Prasyarat: Data harus dalam keadaan terurut berdasarkan NIM terlebih dahulu menggunakan Merge Sort.
 
-- Setiap elemen dicek apakah NIM di dalam objek tersebut cocok dengan input pengguna.
+- Cara Kerja: Program memeriksa elemen tengah (mid) dari array. Jika NIM tidak cocok, program akan membuang setengah bagian data yang tidak mungkin mengandung NIM tersebut dan melanjutkan pencarian pada setengah bagian sisanya.
 
-Mendukung penampilan lebih dari satu data jika mahasiswa yang sama meminjam beberapa buku.
-
-## 4\. Tampilan Menu
+## 4. Tampilan Menu
 
 - Tampilkan Mahasiswa: Menampilkan daftar master mahasiswa.
 
