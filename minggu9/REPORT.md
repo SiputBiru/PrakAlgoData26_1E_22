@@ -473,3 +473,147 @@ Pilih: 0
 ```
 
 ## Percobaan 2: Konversi Nilai Tugas ke Biner
+
+kode program
+
+StackKonversi.java
+
+```java
+public class StackKonversi {
+  int[] tumpukanBiner;
+  int size;
+  int top;
+
+  public StackKonversi() {
+    this.size = 32;
+    tumpukanBiner = new int[size];
+    top = -1;
+  }
+
+  public boolean isEmpty() {
+    return top == -1;
+  }
+
+  public boolean isFull() {
+    return top == size - 1;
+  }
+
+  public void push(int data) {
+    if (isFull()) {
+      System.out.println("Stack penuh");
+    } else {
+      top++;
+      tumpukanBiner[top] = data;
+    }
+
+  }
+
+  public int pop() {
+    if (isEmpty()) {
+      System.out.println("Stack Kosong");
+      return -1;
+    } else {
+      int data = tumpukanBiner[top];
+      top--;
+      return data;
+    }
+  }
+}
+```
+
+StackTugasMahasiswa22.java
+
+```java
+  String konversiDesimalKeBiner(int nilai) {
+    StackKonversi stack = new StackKonversi();
+    while (nilai > 0) {
+      int sisa = nilai % 2;
+      stack.push(sisa);
+      nilai = nilai / 2;
+
+    }
+    String biner = new String();
+
+    while (!stack.isEmpty()) {
+      biner += stack.pop();
+    }
+    return biner;
+
+  }
+```
+
+output:
+
+```bash
+❯ java MahasiswaDemo22.java
+
+Menu
+1. Mengumpulkan Tugas
+2. Menilai Tugas
+3. Melihat Tugas Teratas
+4. Melihat Daftar Tugas
+5. Melihat Daftar Tugas(dari bawah)
+6. Melihat Tugas pertama kali dikumpulkan
+7. Menghitung Jumlah Tugas
+Pilih: 1
+Nama: Tika
+NIM: 12093812903
+Kelas: 1E
+Tugas Tika berhasil dikumpulkan
+
+Menu
+1. Mengumpulkan Tugas
+2. Menilai Tugas
+3. Melihat Tugas Teratas
+4. Melihat Daftar Tugas
+5. Melihat Daftar Tugas(dari bawah)
+6. Melihat Tugas pertama kali dikumpulkan
+7. Menghitung Jumlah Tugas
+Pilih: 2
+Menilai tugas dari Tika
+Masukkan nilai diantara (0-100): 90
+Nilai Tugas Tika adalah 90
+Nilai biner Tugas: 1011010
+```
+
+### Jawaban pertanyaan
+
+1\. Jelaskan alur kerja dari method konversiDesimalKeBiner!
+
+jawab:
+
+- Method ini menggunakan prinsip LIFO (Last In First Out) dari Stack untuk membalik urutan sisa pembagian agar menjadi urutan biner yang benar. Alurnya adalah sebagai berikut:  
+- Inisialisasi: Sebuah objek `StackKonversi` dibuat untuk menyimpan sisa pembagian, dan sebuah variabel `String biner` disiapkan sebagai wadah hasil akhir.  
+- Proses Pembagian (Iterasi Pertama): Selama nilai desimal lebih besar dari 0, sistem akan menghitung sisa bagi (`nilai % 2`).  
+Penyimpanan (Push): Sisa bagi tersebut (angka 0 atau 1) dimasukkan ke dalam stack. Kemudian, nilai desimal dibagi dua (`nilai / 2`) untuk iterasi berikutnya.  
+- Penyusunan String (Iterasi Kedua): Setelah nilai desimal habis (0), data diambil keluar dari stack menggunakan `pop()` satu per satu.  
+- Penggabungan: Karena stack bersifat terbalik, sisa bagi yang terakhir masuk (angka biner paling depan/signifikan) akan keluar pertama kali dan digabungkan ke dalam string `biner` hingga stack kosong.  
+
+2\. Pada method konversiDesimalKeBiner, ubah kondisi perulangan menjadi while (kode != 0), bagaimana hasilnya? Jelaskan alasannya!
+
+jawab:
+
+bentuk perubahan akan seperti ini:
+
+```java
+  String konversiDesimalKeBiner(int nilai) {
+    StackKonversi stack = new StackKonversi();
+    while (nilai != 0) { // diubah menjadi nilai != 0
+      int sisa = nilai % 2;
+      stack.push(sisa);
+      nilai = nilai / 2;
+    }
+    String biner = new String();
+
+    while (!stack.isEmpty()) {
+      biner += stack.pop();
+    }
+    return biner;
+  }
+```
+
+Penjelasan:
+
+- Logika Berhenti yang Sama: Untuk bilangan desimal positif, proses pembagian akan terus dilakukan hingga nilai mencapai angka 0. Kondisi `nilai > 0` dan `nilai != 0` akan memberikan hasil evaluasi `false` yang sama persis ketika nilai sudah mencapai 0, sehingga perulangan berhenti di titik yang sama.  
+- Penanganan Bilangan Bulat: Dalam Java, pembagian integer (bilangan bulat) akan membuang angka di belakang koma. Misalnya, $1 / 2$ akan menghasilkan $0$. Begitu nilai menjadi $0$, kedua kondisi tersebut (`> 0` maupun `!= 0`) sama-sama akan menghentikan proses perulangan.  
+- Perbedaan Teoritis: Perbedaan baru akan muncul jika input yang diberikan adalah bilangan negatif. Kondisi `nilai != 0` akan menyebabkan infinite loop (perulangan tak terbatas) atau hasil yang tidak valid pada bilangan negatif, sedangkan `nilai > 0` akan langsung melewati perulangan tersebut. Namun, dalam konteks konversi nilai tugas (0-100), kedua kondisi ini bekerja secara identik.
