@@ -617,3 +617,223 @@ Penjelasan:
 - Logika Berhenti yang Sama: Untuk bilangan desimal positif, proses pembagian akan terus dilakukan hingga nilai mencapai angka 0. Kondisi `nilai > 0` dan `nilai != 0` akan memberikan hasil evaluasi `false` yang sama persis ketika nilai sudah mencapai 0, sehingga perulangan berhenti di titik yang sama.  
 - Penanganan Bilangan Bulat: Dalam Java, pembagian integer (bilangan bulat) akan membuang angka di belakang koma. Misalnya, $1 / 2$ akan menghasilkan $0$. Begitu nilai menjadi $0$, kedua kondisi tersebut (`> 0` maupun `!= 0`) sama-sama akan menghentikan proses perulangan.  
 - Perbedaan Teoritis: Perbedaan baru akan muncul jika input yang diberikan adalah bilangan negatif. Kondisi `nilai != 0` akan menyebabkan infinite loop (perulangan tak terbatas) atau hasil yang tidak valid pada bilangan negatif, sedangkan `nilai > 0` akan langsung melewati perulangan tersebut. Namun, dalam konteks konversi nilai tugas (0-100), kedua kondisi ini bekerja secara identik.
+
+## Latihan Praktikum
+
+Kode program
+
+Surat22.java
+
+```java
+public class Surat22 {
+  String idSurat, namaMahasiswa, kelas;
+  char jenisIzin;
+  int durasi;
+
+  public Surat22() {
+  }
+
+  public Surat22(String idSurat, String namaMahasiswa, String kelas, char jenisIzin, int durasi) {
+    this.idSurat = idSurat;
+    this.namaMahasiswa = namaMahasiswa;
+    this.kelas = kelas;
+    this.jenisIzin = jenisIzin;
+    this.durasi = durasi;
+  }
+}
+```
+
+StackSuratIzin22.java
+
+```java
+public class StackSuratIzin22 {
+    int size, top;
+    Surat22[] stack;
+
+    public StackSuratIzin22(int size) {
+        this.size = size;
+        stack = new Surat22[size];
+        top = -1;
+    }
+
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    public boolean isFull() {
+        return top == size - 1;
+    }
+
+    public void push(Surat22 srt) {
+        if (!isFull()) {
+            top++;
+            stack[top] = srt;
+        } else {
+            System.out.println("Stack Penuh! Tidak bisa menerima surat lagi.");
+        }
+    }
+
+    public Surat22 pop() {
+        if (!isEmpty()) {
+            Surat22 srt = stack[top];
+            top--;
+            return srt;
+        } else {
+            System.out.println("Stack Kosong! Tidak ada surat untuk diproses.");
+            return null;
+        }
+    }
+
+    public Surat22 peek() {
+        if (!isEmpty()) {
+            return stack[top];
+        } else {
+            System.out.println("Tidak ada surat di dalam tumpukan.");
+            return null;
+        }
+    }
+
+    public void cariSurat(String nama) {
+        boolean ditemukan = false;
+        for (int i = top; i >= 0; i--) {
+            if (stack[i].namaMahasiswa.equalsIgnoreCase(nama)) {
+                System.out.println("Surat ditemukan pada posisi ke-" + (top - i + 1) + " dari atas.");
+                System.out.println("ID Surat: " + stack[i].idSurat + " | Jenis: " + stack[i].jenisIzin);
+                ditemukan = true;
+            }
+        }
+        if (!ditemukan) {
+            System.out.println("Surat atas nama " + nama + " tidak ditemukan.");
+        }
+    }
+}
+```
+
+SuratIzinDemo22.java
+
+```java
+import java.util.Scanner;
+
+public class SuratIzinDemo22 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        StackSuratIzin22 stack = new StackSuratIzin22(10);
+        int pilih;
+
+        do {
+            System.out.println("\n--- Sistem Pengelolaan Surat Izin ---");
+            System.out.println("1. Terima Surat Izin");
+            System.out.println("2. Proses Surat Izin (Pop)");
+            System.out.println("3. Lihat Surat Izin Terakhir (Peek)");
+            System.out.println("4. Cari Surat (Berdasarkan Nama)");
+            System.out.println("5. Keluar");
+            System.out.print("Pilih Menu: ");
+            pilih = sc.nextInt();
+            sc.nextLine(); // clear buffer
+
+            switch (pilih) {
+                case 1:
+                    System.out.print("ID Surat: ");
+                    String id = sc.nextLine();
+                    System.out.print("Nama Mahasiswa: ");
+                    String nama = sc.nextLine();
+                    System.out.print("Kelas: ");
+                    String kelas = sc.nextLine();
+                    System.out.print("Jenis Izin (S/I): ");
+                    char jenis = sc.next().charAt(0);
+                    System.out.print("Durasi (hari): ");
+                    int durasi = sc.nextInt();
+                    
+                    Surat22 srt = new Surat22(id, nama, kelas, jenis, durasi);
+                    stack.push(srt);
+                    break;
+
+                case 2:
+                    Surat22 diproses = stack.pop();
+                    if (diproses != null) {
+                        System.out.println("Memproses surat milik: " + diproses.namaMahasiswa);
+                    }
+                    break;
+
+                case 3:
+                    Surat22 terakhir = stack.peek();
+                    if (terakhir != null) {
+                        System.out.println("Surat teratas adalah milik: " + terakhir.namaMahasiswa);
+                    }
+                    break;
+
+                case 4:
+                    System.out.print("Masukkan nama mahasiswa yang dicari: ");
+                    String cariNama = sc.nextLine();
+                    stack.cariSurat(cariNama);
+                    break;
+
+                case 5:
+                    System.out.println("Keluar dari program...");
+                    break;
+
+                default:
+                    System.out.println("Pilihan tidak valid!");
+            }
+        } while (pilih != 5);
+        sc.close();
+    }
+}
+```
+
+output:
+
+```bash
+❯ java ./SuratIzinDemo22.java
+
+--- Sistem Pengelolaan Surat Izin ---
+1. Terima Surat Izin
+2. Proses Surat Izin (Pop)
+3. Lihat Surat Izin Terakhir (Peek)
+4. Cari Surat (Berdasarkan Nama)
+5. Keluar
+Pilih Menu: 1
+ID Surat: 10293
+Nama Mahasiswa: Udin
+Kelas: 1B
+Jenis Izin (S/I): S
+Durasi (hari): 20
+
+--- Sistem Pengelolaan Surat Izin ---
+1. Terima Surat Izin
+2. Proses Surat Izin (Pop)
+3. Lihat Surat Izin Terakhir (Peek)
+4. Cari Surat (Berdasarkan Nama)
+5. Keluar
+Pilih Menu: 3
+Surat teratas adalah milik: Udin
+
+--- Sistem Pengelolaan Surat Izin ---
+1. Terima Surat Izin
+2. Proses Surat Izin (Pop)
+3. Lihat Surat Izin Terakhir (Peek)
+4. Cari Surat (Berdasarkan Nama)
+5. Keluar
+Pilih Menu: 4
+Masukkan nama mahasiswa yang dicari: leah
+Surat atas nama leah tidak ditemukan.
+
+--- Sistem Pengelolaan Surat Izin ---
+1. Terima Surat Izin
+2. Proses Surat Izin (Pop)
+3. Lihat Surat Izin Terakhir (Peek)
+4. Cari Surat (Berdasarkan Nama)
+5. Keluar
+Pilih Menu: 4
+Masukkan nama mahasiswa yang dicari: Udin
+Surat ditemukan pada posisi ke-1 dari atas.
+ID Surat: 10293 | Jenis: S
+```
+
+Penjelasan Singkat:
+
+- **LIFO Principle**: Surat yang terakhir masuk akan menjadi yang pertama diproses (menu 2).  
+
+- **Pencarian**: Menu 4 melakukan iterasi dari `top` ke bawah untuk mencari kesesuaian nama mahasiswa.
+
+- **Jenis Izin**: Menggunakan tipe data `char` ('S' untuk Sakit, 'I' untuk Izin) sesuai dengan diagram yang diminta
