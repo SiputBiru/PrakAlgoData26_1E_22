@@ -34,3 +34,4 @@ java {minggu}/src/{filename}.java
 * Jobsheet Minggu 6 [link](minggu6/REPORT.md)
 * Jobsheet Minggu 7 [link](minggu7/REPORT.md)
 * Case Method 1 [link](CaseMethod01/REPORT.md)
+* Jobsheet Minggu 9 [link](minggu9/REPORT.md)
