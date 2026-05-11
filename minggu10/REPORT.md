@@ -627,3 +627,327 @@ switch (pilihan) {
 ```
 
 Atribut rear: Dalam struktur data Queue yang dibuat, rear selalu menunjuk ke posisi elemen terakhir yang baru saja dimasukkan
+
+## Tugas: antrian persetujuan Kartu Rencana Studi (KRS) Mahasiswa oleh Dosen Pembina Akademik (DPA)
+
+kode program:
+
+Mahasiswa.java
+
+```java
+public class Mahasiswa {
+  String nim, nama, prodi, kelas;
+
+  public Mahasiswa(String nim, String nama, String prodi, String kelas) {
+    this.nim = nim;
+    this.nama = nama;
+    this.prodi = prodi;
+    this.kelas = kelas;
+  }
+
+  void tampilkanData() {
+    System.out.println(nim + " - " + nama + " - " + prodi + " - " + kelas);
+  }
+}
+
+```
+
+AntrianKRS.java
+
+```java
+public class AntrianKRS {
+  Mahasiswa[] data;
+  int front, rear, size, max;
+  int totalServiced = 0;
+
+  public AntrianKRS(int n) {
+    max = n;
+    data = new Mahasiswa[max];
+    size = 0;
+    front = 0;
+    rear = -1;
+  }
+
+  public boolean isEmpty() {
+    return size == 0;
+  }
+
+  public boolean isFull() {
+    return size == max;
+  }
+
+  public void clear() {
+    if (!isEmpty()) {
+      front = 0;
+      rear = -1;
+      size = 0;
+      System.out.println("Antrian berhasil dikosongkan");
+    } else {
+      System.out.println("Antrian sudah kosong");
+    }
+  }
+
+  public void tambahAntrian(Mahasiswa mhs) {
+    if (isFull()) {
+      System.out.println("Antrian penuh, tidak dapat menambah mahasiswa.");
+    } else {
+      rear = (rear + 1) % max;
+      data[rear] = mhs;
+      size++;
+      System.out.println(mhs.nama + " berhasil masuk ke antrian.");
+    }
+  }
+
+  public void layaniKRS() {
+    if (size >= 2) {
+      for (int i = 0; i < 2; i++) {
+        Mahasiswa m = data[front];
+        System.out.println("Memproses KRS: " + m.nama);
+        front = (front + 1) % max;
+        size--;
+        totalServiced++;
+      }
+    } else if (size == 1) {
+      System.out.println("Hanya ada 1 mahasiswa, tetap diproses.");
+      Mahasiswa m = data[front];
+      front = (front + 1) % max;
+      System.out.println("Memproses KRS: " + m.nama);
+      size--;
+      totalServiced++;
+    } else {
+      System.out.println("Antrian kosong!");
+    }
+  }
+
+  public void tampilkan2Terdepan() {
+    if (size > 0) {
+      int limit = Math.min(size, 2);
+      for (int i = 0; i < limit; i++) {
+        int index = (front + i) % max;
+        data[index].tampilkanData();
+      }
+    } else {
+      System.out.println("Antrian kosong.");
+    }
+  }
+
+  public void tampilkanSemua() {
+    if (isEmpty()) {
+      System.out.println("Antrian kosong.");
+    } else {
+      System.out.println("Daftar Mahasiswa dalam Antrian:");
+      System.out.println("NIM - NAMA - PRODI - KELAS");
+      for (int i = 0; i < size; i++) {
+        int index = (front + i) % max;
+        System.out.print((i + 1) + ". ");
+        data[index].tampilkanData();
+      }
+    }
+  }
+
+  public void lihatAkhir() {
+    if (!isEmpty()) {
+      System.out.print("Mahasiswa paling belakang: ");
+      data[rear].tampilkanData();
+    } else {
+      System.out.println("Antrian kosong.");
+    }
+  }
+
+  public void cetakStatistik() {
+    System.out.println("Mahasiswa dalam antrian: " + size);
+    System.out.println("Mahasiswa sudah KRS: " + totalServiced);
+    // Maksimal ditangani DPA adalah 30
+    System.out.println("Sisa kuota DPA: " + (30 - totalServiced));
+  }
+}
+```
+
+untuk main kita namakan LayananKRS:
+
+```java
+public class LayananKRS {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+
+    AntrianKRS antrian = new AntrianKRS(10);
+    int pilihan;
+
+    do {
+      System.out.println("\n=== Sistem Antrian KRS DPA ===");
+      System.out.println("1. Tambah Mahasiswa ke Antrian");
+      System.out.println("2. Panggil Antrian");
+      System.out.println("3. Lihat 2 Antrian Terdepan");
+      System.out.println("4. Lihat Antrian Paling Akhir");
+      System.out.println("5. Tampilkan Semua Antrian");
+      System.out.println("6. Cetak Statistik (Jumlah Antrian & Sisa Kuota)");
+      System.out.println("7. Kosongkan Antrian");
+      System.out.println("0. Keluar");
+      System.out.print("Pilih menu: ");
+
+      pilihan = sc.nextInt();
+      sc.nextLine();
+
+      switch (pilihan) {
+        case 1:
+          if (antrian.totalServiced + antrian.size >= 30) {
+            System.out.println("Mohon maaf, kuota DPA (30 mahasiswa) sudah terpenuhi.");
+          } else {
+            System.out.print("NIM  : ");
+            String nim = sc.nextLine();
+            System.out.print("Nama : ");
+            String nama = sc.nextLine();
+            System.out.print("Prodi: ");
+            String prodi = sc.nextLine();
+            System.out.print("Kelas: ");
+            String kelas = sc.nextLine();
+
+            Mahasiswa mhs = new Mahasiswa(nim, nama, prodi, kelas);
+            antrian.tambahAntrian(mhs);
+          }
+          break;
+
+        case 2:
+          antrian.layaniKRS();
+          break;
+
+        case 3:
+          System.out.println("--- 2 Antrian Terdepan ---");
+          antrian.tampilkan2Terdepan();
+          break;
+
+        case 4:
+          antrian.lihatAkhir();
+          break;
+
+        case 5:
+          antrian.tampilkanSemua();
+          break;
+
+        case 6:
+          antrian.cetakStatistik();
+          break;
+
+        case 7:
+          antrian.clear();
+          break;
+
+        case 0:
+          System.out.println("Selesai.");
+          break;
+
+        default:
+          System.out.println("Pilihan tidak valid!");
+      }
+    } while (pilihan != 0);
+
+    sc.close();
+  }
+}
+```
+
+output:
+
+```bash
+❯ java LayananKRS.java
+
+=== Sistem Antrian KRS DPA ===
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian
+3. Lihat 2 Antrian Terdepan
+4. Lihat Antrian Paling Akhir
+5. Tampilkan Semua Antrian
+6. Cetak Statistik (Jumlah Antrian & Sisa Kuota)
+7. Kosongkan Antrian
+0. Keluar
+Pilih menu: 1
+NIM  : 123
+Nama : Bagas
+Prodi: TI
+Kelas: 1B
+Bagas berhasil masuk ke antrian.
+
+=== Sistem Antrian KRS DPA ===
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian
+3. Lihat 2 Antrian Terdepan
+4. Lihat Antrian Paling Akhir
+5. Tampilkan Semua Antrian
+6. Cetak Statistik (Jumlah Antrian & Sisa Kuota)
+7. Kosongkan Antrian
+0. Keluar
+Pilih menu: 1
+NIM  : 124
+Nama : Udin
+Prodi: 1G
+Kelas: 1G
+Udin berhasil masuk ke antrian.
+
+=== Sistem Antrian KRS DPA ===
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian
+3. Lihat 2 Antrian Terdepan
+4. Lihat Antrian Paling Akhir
+5. Tampilkan Semua Antrian
+6. Cetak Statistik (Jumlah Antrian & Sisa Kuota)
+7. Kosongkan Antrian
+0. Keluar
+Pilih menu: 1
+NIM  : 145
+Nama : Udin
+Prodi: TI
+Kelas: 1F
+Udin berhasil masuk ke antrian.
+
+=== Sistem Antrian KRS DPA ===
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian
+3. Lihat 2 Antrian Terdepan
+4. Lihat Antrian Paling Akhir
+5. Tampilkan Semua Antrian
+6. Cetak Statistik (Jumlah Antrian & Sisa Kuota)
+7. Kosongkan Antrian
+0. Keluar
+Pilih menu: 3
+--- 2 Antrian Terdepan ---
+123 - Bagas - TI - 1B
+124 - Udin - 1G - 1G
+
+=== Sistem Antrian KRS DPA ===
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian
+3. Lihat 2 Antrian Terdepan
+4. Lihat Antrian Paling Akhir
+5. Tampilkan Semua Antrian
+6. Cetak Statistik (Jumlah Antrian & Sisa Kuota)
+7. Kosongkan Antrian
+0. Keluar
+Pilih menu: 4
+Mahasiswa paling belakang: 145 - Udin - TI - 1F
+
+=== Sistem Antrian KRS DPA ===
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian
+3. Lihat 2 Antrian Terdepan
+4. Lihat Antrian Paling Akhir
+5. Tampilkan Semua Antrian
+6. Cetak Statistik (Jumlah Antrian & Sisa Kuota)
+7. Kosongkan Antrian
+0. Keluar
+Pilih menu: 6
+Mahasiswa dalam antrian: 3
+Mahasiswa sudah KRS: 0
+Sisa kuota DPA: 30
+
+=== Sistem Antrian KRS DPA ===
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian
+3. Lihat 2 Antrian Terdepan
+4. Lihat Antrian Paling Akhir
+5. Tampilkan Semua Antrian
+6. Cetak Statistik (Jumlah Antrian & Sisa Kuota)
+7. Kosongkan Antrian
+0. Keluar
+Pilih menu: 0
+Selesai.
+```
