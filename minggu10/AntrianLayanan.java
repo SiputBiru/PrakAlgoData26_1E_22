@@ -50,7 +50,7 @@ public class AntrianLayanan {
       System.out.println("Daftar Mahasiswa dalam Antrian:");
       System.out.println("NIM - NAMA - PRODI - KELAS");
       for (int i = 0; i < size; i++) {
-        int index = (front + 1) % max;
+        int index = (front + i) % max;
         System.out.print((i + 1) + ". ");
         data[index].tampilkanData();
       }
@@ -89,4 +89,15 @@ public class AntrianLayanan {
       return mhs;
     }
   }
+
+  public void lihatAkhir() {
+    if (!isEmpty()) {
+      System.out.print("Mahasiswa paling belakang: ");
+      System.out.println("NIM - NAMA - PRODI - KELAS");
+      data[rear].tampilkanData();
+    } else {
+      System.out.println("Antrian kosong.");
+    }
+  }
+
 }

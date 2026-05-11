@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class LayananAkademikSIAKAD {
+
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
@@ -47,7 +48,13 @@ public class LayananAkademikSIAKAD {
           antrian.tampilkanSemua();
           break;
         case 5:
+          System.out.println("6. Cek Antrian Paling Belakang");
+          break;
+        case 6:
           System.out.println("Jumlah dalam antrian: " + antrian.getJumlahAntrian());
+          break;
+        case 0:
+          System.out.println("Terima kasih.");
           break;
       }
     } while (pilihan != 0);

@@ -323,3 +323,307 @@ public int Dequeue() {
 ```
 
 ## Percobaan 2: Antrian Layanan Akademik
+
+kode program  
+
+Mahasiswa.java
+
+```java
+
+public class Mahasiswa {
+  String nim, nama, prodi, kelas;
+
+  public Mahasiswa(String nim, String nama, String prodi, String kelas) {
+    this.nim = nim;
+    this.nama = nama;
+    this.prodi = prodi;
+    this.kelas = kelas;
+  }
+
+  void tampilkanData() {
+    System.out.println(nim + " - " + nama + " - " + prodi + " - " + kelas);
+  }
+}
+```
+
+AntrianLayanan.java
+
+```java
+public class AntrianLayanan {
+  Mahasiswa[] data;
+  int front;
+  int rear;
+  int size;
+  int max;
+
+  public AntrianLayanan(int n) {
+    this.max = n;
+    this.data = new Mahasiswa[max];
+    this.size = 0;
+    this.front = 0;
+    this.rear = -1;
+  }
+
+  public boolean isEmpty() {
+    if (size == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public boolean isFull() {
+    if (size == max) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public int getJumlahAntrian() {
+    return size;
+  }
+
+  public void lihatTerdepan() {
+    if (isEmpty()) {
+      System.out.println("Queue Masih Kosong");
+    } else {
+      System.out.print("Mahasiswa terdepan: ");
+      System.out.println("NIM - NAMA - PRODI - KELAS");
+      data[front].tampilkanData();
+    }
+  }
+
+  public void tampilkanSemua() {
+    if (isEmpty()) {
+      System.out.println("Antrian kosong.");
+    } else {
+      System.out.println("Daftar Mahasiswa dalam Antrian:");
+      System.out.println("NIM - NAMA - PRODI - KELAS");
+      for (int i = 0; i < size; i++) {
+        int index = (front + i) % max;
+        System.out.print((i + 1) + ". ");
+        data[index].tampilkanData();
+      }
+    }
+  }
+
+  public void clear() {
+    if (!isEmpty()) {
+      front = rear = -1;
+      size = 0;
+      System.out.println("Queue berhasil dikosongkan");
+    } else {
+      System.out.println("Queue masih kosong");
+    }
+  }
+
+  public void tambahAntrian(Mahasiswa mhs) {
+    if (isFull()) {
+      System.out.println("Antrian penuh, tidak dapat menambah mahasiswa.");
+    } else {
+      rear = (rear + 1) % max;
+      data[rear] = mhs;
+      size++;
+      System.out.println(mhs.nama + " berhasil masuk ke antrian.");
+    }
+  }
+
+  public Mahasiswa layaniMahasiswa() {
+    if (isEmpty()) {
+      System.out.println("Queue masih kosong");
+      return null;
+    } else {
+      Mahasiswa mhs = data[front];
+      front = (front + 1) % max;
+      size--;
+      return mhs;
+    }
+  }
+}
+```
+
+LayananAkademikSIAKAD.java
+
+```java
+import java.util.Scanner;
+
+public class LayananAkademikSIAKAD {
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+
+    AntrianLayanan antrian = new AntrianLayanan(5);
+    int pilihan;
+
+    do {
+      System.out.println("\n=== Menu Antrian Layanan Akademik ===");
+      System.out.println("1. Tambah Mahasiswa ke Antrian");
+      System.out.println("2. Layani Mahasiswa");
+      System.out.println("3. Lihat Mahasiswa Terdepan");
+      System.out.println("4. Lihat Semua Antrian");
+      System.out.println("5. Jumlah Mahasiswa dalam Antrian");
+      System.out.println("0. Keluar");
+      System.out.print("Pilih menu: ");
+      pilihan = sc.nextInt();
+      sc.nextLine();
+
+      switch (pilihan) {
+        case 1:
+          System.out.print("NIM    : ");
+          String nim = sc.nextLine();
+          System.out.print("Nama   : ");
+          String nama = sc.nextLine();
+          System.out.print("Prodi  : ");
+          String prodi = sc.nextLine();
+          System.out.print("Kelas  : ");
+          String kelas = sc.nextLine();
+          Mahasiswa mhs = new Mahasiswa(nim, nama, prodi, kelas);
+          antrian.tambahAntrian(mhs);
+          break;
+
+        case 2:
+          Mahasiswa dilayani = antrian.layaniMahasiswa();
+          if (dilayani != null) {
+            System.out.println("Melayani mahasiswa: ");
+            dilayani.tampilkanData();
+          }
+          break;
+        case 3:
+          antrian.lihatTerdepan();
+          break;
+        case 4:
+          antrian.tampilkanSemua();
+          break;
+        case 5:
+          System.out.println("Jumlah dalam antrian: " + antrian.getJumlahAntrian());
+          break;
+      }
+    } while (pilihan != 0);
+
+    sc.close();
+  }
+}
+
+```
+
+output:
+
+```bash
+java LayananAkademikSIAKAD.java
+
+=== Menu Antrian Layanan Akademik ===
+1. Tambah Mahasiswa ke Antrian
+2. Layani Mahasiswa
+3. Lihat Mahasiswa Terdepan
+4. Lihat Semua Antrian
+5. Jumlah Mahasiswa dalam Antrian
+0. Keluar
+Pilih menu: 1
+NIM    : 123
+Nama   : aldi
+Prodi  : TI
+Kelas  : 1A
+aldi berhasil masuk ke antrian.
+
+=== Menu Antrian Layanan Akademik ===
+1. Tambah Mahasiswa ke Antrian
+2. Layani Mahasiswa
+3. Lihat Mahasiswa Terdepan
+4. Lihat Semua Antrian
+5. Jumlah Mahasiswa dalam Antrian
+0. Keluar
+Pilih menu: 1
+NIM    : 124
+Nama   : Bayu
+Prodi  : TI
+Kelas  : 1B
+Bayu berhasil masuk ke antrian.
+
+=== Menu Antrian Layanan Akademik ===
+1. Tambah Mahasiswa ke Antrian
+2. Layani Mahasiswa
+3. Lihat Mahasiswa Terdepan
+4. Lihat Semua Antrian
+5. Jumlah Mahasiswa dalam Antrian
+0. Keluar
+Pilih menu: 4
+Daftar Mahasiswa dalam Antrian:
+NIM - NAMA - PRODI - KELAS
+1. 123 - aldi - TI - 1A
+2. 124 - Bayu - TI - 1B
+
+=== Menu Antrian Layanan Akademik ===
+1. Tambah Mahasiswa ke Antrian
+2. Layani Mahasiswa
+3. Lihat Mahasiswa Terdepan
+4. Lihat Semua Antrian
+5. Jumlah Mahasiswa dalam Antrian
+0. Keluar
+Pilih menu: 2
+Melayani mahasiswa: 
+123 - aldi - TI - 1A
+
+=== Menu Antrian Layanan Akademik ===
+1. Tambah Mahasiswa ke Antrian
+2. Layani Mahasiswa
+3. Lihat Mahasiswa Terdepan
+4. Lihat Semua Antrian
+5. Jumlah Mahasiswa dalam Antrian
+0. Keluar
+Pilih menu: 4
+Daftar Mahasiswa dalam Antrian:
+NIM - NAMA - PRODI - KELAS
+1. 124 - Bayu - TI - 1B
+```
+
+### Jawaban pertanyaan
+
+Pertanyaan: "Lakukan modifikasi program dengan menambahkan method baru bernama LihatAkhir pada class AntrianLayanan yang digunakan untuk mengecek antrian yang berada di posisi belakang. Tambahkan pula daftar menu 6. Cek Antrian paling belakang pada class LayananAkademikSIAKAD sehingga method LihatAkhir dapat dipanggil!"
+
+jawab:
+
+1\. memodifikasi Class `AntrianLayanan`
+
+Menambahkan metode lihatAkhir:
+
+```java
+// AntrianLayanan.java
+public void lihatAkhir() {
+    if (!isEmpty()) {
+        System.out.print("Mahasiswa paling belakang: ");
+        System.out.println("NIM - NAMA - PRODI - KELAS");
+        data[rear].tampilkanData(); 
+    } else {
+        System.out.println("Antrian kosong.");
+    }
+}
+```
+
+2\. Modfikasi Class LayananAkademikSIAKAD
+
+```java
+// LayananAkademikSIAKAD
+System.out.println("5. Jumlah Mahasiswa dalam Antrian");
++ System.out.println("6. Cek Antrian Paling Belakang"); 
+System.out.println("0. Keluar");
+```
+
+menambahkan switch case:
+
+```java
+// LayananAkademikSIAKAD
+switch (pilihan) {
+    // ... case 1 sampai 5 tetap sama ...
+    
+    case 6:
+        antrian.lihatAkhir(); // Memanggil method yang baru dibuat
+        break;
+        
+    case 0:
+        System.out.println("Terima kasih.");
+        break;
+}
+```
+
+Atribut rear: Dalam struktur data Queue yang dibuat, rear selalu menunjuk ke posisi elemen terakhir yang baru saja dimasukkan
