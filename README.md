@@ -37,3 +37,4 @@ java {minggu}/src/{filename}.java
 * Jobsheet Minggu 9 [link](minggu9/REPORT.md)
 * Jobsheet Minggu 10 [link](minggu10/REPORT.md)
 * Jobsheet Minggu 11 [link](minggu11/REPORT.md)
+* Jobsheet Minggu 12 [link](minggu12/REPORT.md)
