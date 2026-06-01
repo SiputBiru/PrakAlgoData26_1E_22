@@ -5,7 +5,7 @@
 ## Percobaan 1: Implementasi Binary Search Tree menggunakan Linked List
 
 ### Deskripsi
-Pada percobaan ini, kita mengimplementasikan Binary Search Tree (BST) menggunakan struktur data linked list. Tree dibangun dengan kelas `Node22` yang menyimpan objek `Mahasiswa22` sebagai data. Kelas `BinaryTree22` mengimplementasikan logika BST, dengan operasi `add`, `find`, `delete`, serta metode traversal (`PreOrder`, `InOrder`, dan `PostOrder`). Nilai IPK digunakan sebagai indikator posisi node dalam tree: lebih kecil ke kiri, dan lebih besar ke kanan.
+Pada percobaan ini, mengimplementasikan Binary Search Tree (BST) menggunakan struktur data linked list. Tree dibangun dengan kelas `Node22` yang menyimpan objek `Mahasiswa22` sebagai data. Kelas `BinaryTree22` mengimplementasikan logika BST, dengan operasi `add`, `find`, `delete`, serta metode traversal (`PreOrder`, `InOrder`, dan `PostOrder`). Nilai IPK digunakan sebagai indikator posisi node dalam tree: lebih kecil ke kiri, dan lebih besar ke kanan.
 
 ### Kode Program
 **Mahasiswa22.java**

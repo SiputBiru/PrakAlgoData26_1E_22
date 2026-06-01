@@ -39,3 +39,4 @@ java {minggu}/src/{filename}.java
 * Jobsheet Minggu 11 [link](minggu11/REPORT.md)
 * Jobsheet Minggu 12 [link](minggu12/REPORT.md)
 * Case Method 2 [link](CaseMethod02/REPORT.md)
+* Jobsheet Minggu 13 [link](minggu13/REPORT.md)
