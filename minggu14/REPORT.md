@@ -383,9 +383,66 @@ Mahasiswa{nim=201236, nama=Shannum, notelp=021xx3}
 ```
 
 ### Pertanyaan 16.3.3 
-1. **Apakah perbedaan fungsi push() dan add() pada objek fruits?**
-    - `push()`: Merupakan metode spesifik dari class Stack yang digunakan untuk memasukkan elemen ke dalam tumpukan berdasarkan prinsip LIFO (Last In, First Out). Elemen yang dimasukkan melalui push() secara konseptual ditempatkan di posisi paling atas tumpukan (top of stack).  
-    - `add()`: Merupakan metode turunan dari interface Collection (dan List) yang diwarisi oleh class Stack. Fungsi ini menyisipkan elemen ke posisi paling akhir dari struktur data linear (diimplementasikan sebagai array dinamis di dalam Vector/Stack).  
+1. **Pada fungsi tambah() yang menggunakan unlimited argument itu menggunakan konsep apa? Dan kelebihannya apa?**
+Fungsi `tambah(Mahasiswa... mahasiswa)` menggunakan konsep `Varargs` (Variable Arguments) yang ditandai dengan operator tiga titik (...) setelah tipe data komponen objek.  
+
+Kelebihannya: Memberikan fleksibilitas yang sangat tinggi saat pemanggilan metode. Jumlah argumen yang dikirimkan tidak perlu ditentukan secara kaku di awal. Metode tersebut dapat menerima satu objek, beberapa objek sekaligus yang dipisahkan oleh tanda koma (seperti `lm.tambah(m, m1, m2)`), menerima objek dalam bentuk satu larik penuh (array), bahkan bisa dipanggil tanpa argumen sama sekali tanpa memicu compile error.
+
+2. **Pada fungsi linearSearch() di atas, silakan diganti dengan fungsi binarySearch() dari collection!**
+
+Untuk menerapkan `Collections.binarySearch()`, objek di dalam list harus diurutkan terlebih dahulu, dan class `Mahasiswa22` perlu mengimplementasikan interface `Comparable` (atau menyediakan objek `Comparator`) agar program mengetahui parameter pencarian (dalam kasus ini adalah berdasarkan NIM).
+
+Berikut adalah modifikasi fungsi pencariannya pada class ListMahasiswa:
+```java
+import java.util.Collections;
+import java.util.Comparator;
+
+int binarySearch(String nim) {
+    // Membuat objek bantuan untuk parameter pencarian NIM
+    Mahasiswa key = new Mahasiswa(nim, "", "");
+    
+    // Menyediakan Comparator untuk membandingkan NIM antar Mahasiswa
+    Comparator<Mahasiswa> comp = new Comparator<Mahasiswa>() {
+        @Override
+        public int compare(Mahasiswa m1, Mahasiswa m2) {
+            return m1.nim.compareTo(m2.nim);
+        }
+    };
+    
+    // Melakukan sorting terlebih dahulu karena syarat utama binary search adalah data harus terurut
+    Collections.sort(mahasiswas, comp);
+    
+    // Memanggil fungsi binary search dari Collections framework
+    return Collections.binarySearch(mahasiswas, key, comp);
+}
+```
+
+hasil:
+```bash
+❯ java minggu14/ListMahasiswa22.java
+Daftar Mahasiswa Awal:
+Mahasiswa{nim=201234, nama=Noureen, notelp=021xx1}
+Mahasiswa{nim=201235, nama=Akhleema, notelp=021xx2}
+Mahasiswa{nim=201236, nama=Shannum, notelp=021xx3}
+
+Menjalankan Linear Search...
+[HASIL] NIM 201235 ditemukan via Linear Search pada indeks: 1
+
+Data setelah di-update via Linear Search:
+Mahasiswa{nim=201234, nama=Noureen, notelp=021xx1}
+Mahasiswa{nim=201235, nama=Akhleema Lela (Linear), notelp=021xx2}
+Mahasiswa{nim=201236, nama=Shannum, notelp=021xx3}
+
+Menjalankan Binary Search...
+[HASIL] NIM 201235 ditemukan via Binary Search pada indeks: 1
+
+Data akhir setelah di-update via Binary Search:
+Mahasiswa{nim=201234, nama=Noureen, notelp=021xx1}
+Mahasiswa{nim=201235, nama=Akhleema Lela (Binary), notelp=021xx2}
+Mahasiswa{nim=201236, nama=Shannum, notelp=021xx3}
+```
+
+3. **Tambahkan fungsi sorting baik secara ascending ataupun descending pada class tersebut!**
 
 ## Tugas Praktikum
 

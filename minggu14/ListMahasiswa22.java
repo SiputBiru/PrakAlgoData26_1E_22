@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ListMahasiswa22 {
     // Deklarasi List untuk menampung objek Mahasiswa
@@ -40,6 +42,26 @@ public class ListMahasiswa22 {
         return -1;
     }
 
+    // Metode pencarian binary berdasarkan NIM
+    public int binarySearch(String nim) {
+        // Membuat objek bantuan untuk parameter pencarian NIM
+        Mahasiswa22 key = new Mahasiswa22(nim, "", "");
+        
+        // Menyediakan Comparator untuk membandingkan NIM antar Mahasiswa
+        Comparator<Mahasiswa22> comp = new Comparator<Mahasiswa22>() {
+            @Override
+            public int compare(Mahasiswa22 m1, Mahasiswa22 m2) {
+                return m1.nim.compareTo(m2.nim);
+            }
+        };
+        
+        // Melakukan sorting terlebih dahulu karena syarat utama binary search adalah data harus terurut
+        Collections.sort(mahasiswas, comp);
+        
+        // Memanggil fungsi binary search dari Collections framework
+        return Collections.binarySearch(mahasiswas, key, comp);
+    }
+
     // Main Method
     public static void main(String[] args) {
         ListMahasiswa22 lm = new ListMahasiswa22();
@@ -52,16 +74,42 @@ public class ListMahasiswa22 {
         // Menambahkan objek mahasiswa ke dalam list
         lm.tambah(m, m1, m2);
 
-        // Menampilkan list mahasiswa sebelum update
-        System.out.println("Daftar Mahasiswa Awal");
+        System.out.println("Daftar Mahasiswa Awal:");
         lm.tampil();
 
-        // Memperbarui data mahasiswa dengan NIM "201235"
-        int indexData = lm.linearSearch("201235");
-        lm.update(indexData, new Mahasiswa22("201235", "Akhleema Lela", "021xx2"));
+        String nimCari = "201235";
 
-        // Menampilkan list mahasiswa setelah update
-        System.out.println("\nDaftar Mahasiswa Setelah Update");
+        // Menggunakan Linear Search
+        System.out.println("\nMenjalankan Linear Search...");
+        
+        int indexLinear = lm.linearSearch(nimCari);
+        
+        if (indexLinear >= 0) {
+            System.out.println("[HASIL] NIM " + nimCari + " ditemukan via Linear Search pada indeks: " + indexLinear);
+            // Update data hasil linear search
+            lm.update(indexLinear, new Mahasiswa22("201235", "Akhleema Lela (Linear)", "021xx2"));
+        } else {
+            System.out.println("[HASIL] NIM " + nimCari + " tidak ditemukan via Linear Search.");
+        }
+        
+        System.out.println("\nData setelah di-update via Linear Search:");
+        lm.tampil();
+
+
+        // Menggunakan Binary Search
+        System.out.println("\nMenjalankan Binary Search...");
+        
+        int indexBinary = lm.binarySearch(nimCari);
+        
+        if (indexBinary >= 0) {
+            System.out.println("[HASIL] NIM " + nimCari + " ditemukan via Binary Search pada indeks: " + indexBinary);
+            // Update data hasil binary search
+            lm.update(indexBinary, new Mahasiswa22("201235", "Akhleema Lela (Binary)", "021xx2"));
+        } else {
+            System.out.println("[HASIL] NIM " + nimCari + " tidak ditemukan via Binary Search.");
+        }
+
+        System.out.println("\nData akhir setelah di-update via Binary Search:");
         lm.tampil();
     }
 }
