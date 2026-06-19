@@ -1,5 +1,6 @@
 import java.util.Iterator;
 import java.util.Stack;
+import java.util.Collections;
 
 public class LoopCollection22 {
     public static void main(String[] args) {
@@ -13,6 +14,12 @@ public class LoopCollection22 {
 
         // Mengganti elemen terakhir menjadi "Strawberry"
         fruits.set(fruits.size() - 1, "Strawberry");
+
+        fruits.add("Mango");
+        fruits.add("guava");
+        fruits.add("avocado");
+
+        java.util.Collections.sort(fruits);
 
         for (String fruit : fruits) {
             System.out.printf("%s ", fruit);

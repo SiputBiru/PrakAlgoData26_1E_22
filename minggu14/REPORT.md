@@ -273,10 +273,25 @@ hasil:
 Banana Orange Watermelon Leci Strawberry
 [Banana, Orange, Watermelon, Leci, Strawberry]
 Strawberry Leci Watermelon Orange Banana
-
 ```
 
 6. **Tambahkan 3 buah seperti “Mango”,”guava”, dan “avocado” kemudian dilakukan sorting!**
+```java
+fruits.add("Mango");
+fruits.add("guava");
+fruits.add("avocado");
+
+java.util.Collections.sort(fruits);
+```
+
+hasil:
+```bash
+❯ java minggu14/LoopCollection22.java
+Banana Leci Mango Orange Strawberry Watermelon avocado guava
+[Banana, Leci, Mango, Orange, Strawberry, Watermelon, avocado, guava]
+guava avocado Watermelon Strawberry Orange Mango Leci Banana
+```
+
 ---
 
 ## Tugas Praktikum
