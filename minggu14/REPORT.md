@@ -189,32 +189,6 @@ public class LoopCollection22 {
 }
 ```
 
-**BinaryTreeArrayMain22.java**
-```java
-public class BinaryTreeArrayMain22 {
-    public static void main(String[] args) {
-        BinaryTreeArray22 bta = new BinaryTreeArray22();
-        
-        System.out.println("--- Populate Data ---");
-        Mahasiswa22[] mhs = new Mahasiswa22[10];
-        mhs[0] = new Mahasiswa22("22001", "Ani", "1E", 3.8);
-        mhs[1] = new Mahasiswa22("22002", "Budi", "1E", 3.5);
-        mhs[2] = new Mahasiswa22("22003", "Cici", "1E", 3.9);
-        
-        bta.populateData(mhs, 2);
-        
-        System.out.println("InOrder Traversal:");
-        bta.traverseInOrder(0);
-        
-        System.out.println("\n--- Add New Student ---");
-        bta.add(new Mahasiswa22("22004", "Dodi", "1E", 3.2)); // Indeks 3, anak dari Budi
-        
-        System.out.println("PreOrder Traversal:");
-        bta.traversePreOrder(0);
-    }
-}
-```
-
 ### Output Main Program
 ```bash
 ❯ java minggu14/LoopCollection22.java
@@ -293,6 +267,125 @@ guava avocado Watermelon Strawberry Orange Mango Leci Banana
 ```
 
 ---
+
+## Percobaan 3: mengimplementasikan sebuah collection untuk menampung objek yang dibuat sesuai kebutuhan
+
+### Kode Program
+**Mahasiswa22.java**
+```java
+public class Mahasiswa22 {
+    String nim;
+    String nama;
+    String notelp;
+
+    // Konstruktor default
+    public Mahasiswa22() {
+    }
+
+    // Konstruktor dengan parameter
+    public Mahasiswa22(String nim, String nama, String notelp) {
+        this.nim = nim;
+        this.nama = nama;
+        this.notelp = notelp;
+    }
+
+    // Mengubah representasi objek menjadi teks saat dicetak
+    @Override
+    public String toString() {
+        return "Mahasiswa{" + "nim=" + nim + ", nama=" + nama + ", notelp=" + notelp + '}';
+    }
+}
+```
+**ListMahasiswa22.java**
+```java
+rt java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class ListMahasiswa22 {
+    // Deklarasi List untuk menampung objek Mahasiswa
+    List<Mahasiswa22> mahasiswas = new ArrayList<>();
+
+    // Metode untuk menambahkan objek (menggunakan varargs / unlimited argument)
+    public void tambah(Mahasiswa22... mahasiswa) {
+        mahasiswas.addAll(Arrays.asList(mahasiswa));
+    }
+
+    // Metode untuk menghapus elemen berdasarkan indeks
+    public void hapus(int index) {
+        mahasiswas.remove(index);
+    }
+
+    // Metode untuk memperbarui data mahasiswa pada indeks tertentu
+    public void update(int index, Mahasiswa22 mhs) {
+        if (index >= 0 && index < mahasiswas.size()) {
+            mahasiswas.set(index, mhs);
+        }
+    }
+
+    // Metode untuk menampilkan seluruh elemen di dalam list
+    public void tampil() {
+        mahasiswas.stream().forEach(mhs -> {
+            System.out.println(mhs.toString());
+        });
+    }
+
+    // Metode pencarian linear berdasarkan NIM untuk mencari indeks objek
+    public int linearSearch(String nim) {
+        for (int i = 0; i < mahasiswas.size(); i++) {
+            if (nim.equals(mahasiswas.get(i).nim)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // Main Method
+    public static void main(String[] args) {
+        ListMahasiswa lm = new ListMahasiswa();
+        
+        // Membuat instansiasi objek mahasiswa
+        Mahasiswa22 m = new Mahasiswa22("201234", "Noureen", "021xx1");
+        Mahasiswa22 m1 = new Mahasiswa22("201235", "Akhleema", "021xx2");
+        Mahasiswa22 m2 = new Mahasiswa22("201236", "Shannum", "021xx3");
+
+        // Menambahkan objek mahasiswa ke dalam list
+        lm.tambah(m, m1, m2);
+
+        // Menampilkan list mahasiswa sebelum update
+        System.out.println("--- Daftar Mahasiswa Awal ---");
+        lm.tampil();
+
+        // Memperbarui data mahasiswa dengan NIM "201235"
+        int indexData = lm.linearSearch("201235");
+        lm.update(indexData, new Mahasiswa22("201235", "Akhleema Lela", "021xx2"));
+
+        // Menampilkan list mahasiswa setelah update
+        System.out.println("\n--- Daftar Mahasiswa Setelah Update ---");
+        lm.tampil();
+    }
+}
+```
+
+
+### Output Main Program
+```bash
+❯ java minggu14/ListMahasiswa22.java
+Daftar Mahasiswa Awal
+Mahasiswa{nim=201234, nama=Noureen, notelp=021xx1}
+Mahasiswa{nim=201235, nama=Akhleema, notelp=021xx2}
+Mahasiswa{nim=201236, nama=Shannum, notelp=021xx3}
+
+Daftar Mahasiswa Setelah Update
+Mahasiswa{nim=201234, nama=Noureen, notelp=021xx1}
+Mahasiswa{nim=201235, nama=Akhleema Lela, notelp=021xx2}
+Mahasiswa{nim=201236, nama=Shannum, notelp=021xx3}
+```
+
+### Pertanyaan 16.3.3 
+1. **Apakah perbedaan fungsi push() dan add() pada objek fruits?**
+    - `push()`: Merupakan metode spesifik dari class Stack yang digunakan untuk memasukkan elemen ke dalam tumpukan berdasarkan prinsip LIFO (Last In, First Out). Elemen yang dimasukkan melalui push() secara konseptual ditempatkan di posisi paling atas tumpukan (top of stack).  
+    - `add()`: Merupakan metode turunan dari interface Collection (dan List) yang diwarisi oleh class Stack. Fungsi ini menyisipkan elemen ke posisi paling akhir dari struktur data linear (diimplementasikan sebagai array dinamis di dalam Vector/Stack).  
 
 ## Tugas Praktikum
 

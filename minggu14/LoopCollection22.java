@@ -19,7 +19,7 @@ public class LoopCollection22 {
         fruits.add("guava");
         fruits.add("avocado");
 
-        java.util.Collections.sort(fruits);
+        Collections.sort(fruits);
 
         for (String fruit : fruits) {
             System.out.printf("%s ", fruit);
