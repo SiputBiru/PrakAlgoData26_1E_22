@@ -267,6 +267,15 @@ Untuk mengubah elemen terakhir (elemen paling atas pada Stack) tanpa menghapusny
 fruits.set(fruits.size() - 1, "Strawberry");
 ```
 
+hasil:
+```bash
+❯ java minggu14/LoopCollection22.java
+Banana Orange Watermelon Leci Strawberry
+[Banana, Orange, Watermelon, Leci, Strawberry]
+Strawberry Leci Watermelon Orange Banana
+
+```
+
 6. **Tambahkan 3 buah seperti “Mango”,”guava”, dan “avocado” kemudian dilakukan sorting!**
 ---
 
