@@ -138,51 +138,53 @@ Penjelasan:
 
 ---
 
-## Percobaan 2: Implementasi Binary Tree dengan Array
-
-### Deskripsi
-Percobaan kedua menunjukkan representasi Binary Tree menggunakan array linear. Atribut `idxLast` berfungsi untuk melacak elemen terakhir. Posisi relasi parent-child ditentukan menggunakan formula perhitungan indeks (misal: anak kiri di `2*i+1` dan kanan di `2*i+2`).
+## Percobaan 2: Mengambil/Menampilkan elemen pada sebuah collection
 
 ### Kode Program
-**BinaryTreeArray22.java**
+**LoopCollection22.java**
 ```java
-public class BinaryTreeArray22 {
-    Mahasiswa22[] data;
-    int idxLast;
+import java.util.Iterator;
+import java.util.Stack;
 
-    public BinaryTreeArray22() {
-        data = new Mahasiswa22[100]; // Ukuran default
-        idxLast = -1;
-    }
+public class LoopCollection22 {
+    public static void main(String[] args) {
+        Stack<String> fruits = new Stack<>();
+        
+        fruits.push("Banana");
+        fruits.add("Orange");
+        fruits.add("Watermelon");
+        fruits.add("Leci");
+        fruits.push("Salak");
 
-    public void populateData(Mahasiswa22[] data, int idxLast) {
-        this.data = data;
-        this.idxLast = idxLast;
-    }
-
-    public void add(Mahasiswa22 m) {
-        if (idxLast + 1 < data.length) {
-            idxLast++;
-            data[idxLast] = m;
-        } else {
-            System.out.println("Tree array is full!");
+        for (String fruit : fruits) {
+            System.out.printf("%s ", fruit);
         }
-    }
+        System.out.println("\n" + fruits.toString());
 
-    public void traverseInOrder(int idxStart) {
-        if (idxStart <= idxLast && data[idxStart] != null) {
-            traverseInOrder(2 * idxStart + 1);
-            System.out.println(data[idxStart].nama + " (" + data[idxStart].ipk + ")");
-            traverseInOrder(2 * idxStart + 2);
+        while (!fruits.empty()) {
+            System.out.printf("%s ", fruits.pop());
         }
-    }
+        System.out.println("");
 
-    public void traversePreOrder(int idxStart) {
-        if (idxStart <= idxLast && data[idxStart] != null) {
-            System.out.println(data[idxStart].nama + " (" + data[idxStart].ipk + ")");
-            traversePreOrder(2 * idxStart + 1);
-            traversePreOrder(2 * idxStart + 2);
+        fruits.push("Melon");
+        fruits.push("Durian");
+        System.out.println("");
+
+        for (Iterator<String> it = fruits.iterator(); it.hasNext();) {
+            String fruit = it.next();
+            System.out.printf("%s ", fruit);
         }
+        System.out.println("");
+
+        fruits.stream().forEach(e -> {
+            System.out.printf("%s ", e);
+        });
+        System.out.println("");
+
+        for (int i = 0; i < fruits.size(); i++) {
+            System.out.printf("%s ", fruits.get(i));
+        }
+        System.out.println("");
     }
 }
 ```
@@ -215,36 +217,57 @@ public class BinaryTreeArrayMain22 {
 
 ### Output Main Program
 ```bash
---- Populate Data ---
-InOrder Traversal:
-Budi (3.5)
-Ani (3.8)
-Cici (3.9)
+❯ java minggu14/LoopCollection22.java
+Banana Orange Watermelon Leci Salak
+[Banana, Orange, Watermelon, Leci, Salak]
+Salak Leci Watermelon Orange Banana
 
---- Add New Student ---
-PreOrder Traversal:
-Ani (3.8)
-Budi (3.5)
-Dodi (3.2)
-Cici (3.9)
+Melon Durian
+Melon Durian
+Melon Durian
 ```
 
-### Pertanyaan 14.3.2
-1. **Apakah kegunaan atribut `data` dan `idxLast` pada class BinaryTreeArray?**
-   `data` menyimpan objek/node pada tree, sedangkan `idxLast` menandai batas indeks elemen terakhir yang terisi dalam array.
-2. **Apakah kegunaan method `populateData()`?**
-   Untuk menginisialisasi secara bulk/massal elemen data dari array luar beserta `idxLast` ke dalam struktur BinaryTreeArray.
-3. **Apakah fungsi dari method `traverseInOrder()`?**
-   Untuk menampilkan data node-node secara terurut jika tree tersebut adalah BST, atau dengan urutan anak kiri -> root -> anak kanan pada Tree.
-4. **Jika root ada pada indeks 0, lalu suatu node memiliki indeks 2, berapakah indeks left child dan right child node tersebut?**
-   Berdasarkan formula array 0-indexed: 
-   Left child = 2 * 2 + 1 = 5.
-   Right child = 2 * 2 + 2 = 6.
-5. **Apa kegunaan nilai statement `int idxLast = 6` pada praktikum?**
-   Nilai ini memberi tahu tree bahwa indeks terakhir yang valid adalah 6, sehingga traversal atau pencarian dibatasi sampai maksimal 7 elemen saja (indeks 0 sampai 6).
-6. **Berdasarkan soal nomor 5, jelaskan kegunaan baris `traverseInOrder(2 * idxStart + 1)` pada method `traverseInOrder()`!**
-   Ini adalah pemanggilan rekursif menggunakan rumus standar `2 * index + 1` untuk meng-eksplorasi atau mengunjungi subtree kiri pada representasi array tree 0-indexed.
+### Pertanyaan 16.3.3 
+1. **Apakah perbedaan fungsi push() dan add() pada objek fruits?**
+    - `push()`: Merupakan metode spesifik dari class Stack yang digunakan untuk memasukkan elemen ke dalam tumpukan berdasarkan prinsip LIFO (Last In, First Out). Elemen yang dimasukkan melalui push() secara konseptual ditempatkan di posisi paling atas tumpukan (top of stack).  
+    - `add()`: Merupakan metode turunan dari interface Collection (dan List) yang diwarisi oleh class Stack. Fungsi ini menyisipkan elemen ke posisi paling akhir dari struktur data linear (diimplementasikan sebagai array dinamis di dalam Vector/Stack).  
+2. **Silakan hilangkan baris 43 dan 44, apakah yang akan terjadi? Mengapa bisa demikian?**
+    hasil:
 
+```bash
+❯ java minggu14/LoopCollection22.java
+Banana Orange Watermelon Leci Salak
+[Banana, Orange, Watermelon, Leci, Salak]
+Salak Leci Watermelon Orange Banana
+```
+
+    Jika baris 43 dan 44 (fruits.push("Melon"); dan fruits.push("Durian");) dihilangkan, maka tiga proses pencetakan di bawahnya (menggunakan Iterator, Stream, dan perulangan for indeks) tidak akan menampilkan data apa pun atau menghasilkan output kosong. Hal tersebut terjadi karena pada baris kode sebelumnya (baris 37-39), seluruh isi di dalam objek fruits sudah dikeluarkan dan dihapus satu per satu menggunakan metode pop() di dalam perulangan while (!fruits.empty()) hingga kondisi stack benar-benar kosong.
+3. **Jelaskan fungsi dari baris 46-49?**
+kode yang dimaksud:
+```java
+for (Iterator<String> it = fruits.iterator(); it.hasNext();) {
+    String fruit = it.next();
+    System.out.printf("%s ", fruit);
+}
+```
+Baris kode tersebut berfungsi untuk menampilkan atau menjelajahi (traversing) seluruh elemen yang tersisa di dalam objek fruits secara berurutan menggunakan objek Iterator.
+
+- `fruits.iterator()` digunakan untuk membuat objek penunjuk (pointer).  
+- `it.hasNext()` berfungsi sebagai kondisi perulangan untuk memeriksa apakah masih ada elemen berikutnya di dalam collection.  
+- `it.next()` berfungsi untuk mengambil elemen yang sedang ditunjuk saat ini sekaligus menggeser posisi penunjuk ke elemen berikutnya.  
+
+4. **Silakan ganti baris kode 25, Stack<String> menjadi List<String> dan apakah yang terjadi? mengapa bisa demikian?**
+
+Ketika baris kode 25 diubah menjadi `List<String> fruits = new Stack<>();`, program akan mengalami compile error (gagal kompilasi) pada metode `fruits.empty()` dan `fruits.pop()`. Hal ini terjadi karena objek fruits direferensikan menggunakan interface `List`. Metode `empty()` dan `pop()` merupakan metode spesifik yang hanya dimiliki oleh class Stack (atau interface `Deque`), dan tidak dideklarasikan di dalam interface `List`.  
+
+5. **Ganti elemen terakhir dari dari objek fruits menjadi “Strawberry”!**
+Untuk mengubah elemen terakhir (elemen paling atas pada Stack) tanpa menghapusnya, dapat digunakan metode set() dengan parameter indeks ukuran dikurangi satu, atau menggunakan metode `setElementAt()` bawaan class Vector/Stack.
+```java
+// Mengganti elemen terakhir menjadi "Strawberry"
+fruits.set(fruits.size() - 1, "Strawberry");
+```
+
+6. **Tambahkan 3 buah seperti “Mango”,”guava”, dan “avocado” kemudian dilakukan sorting!**
 ---
 
 ## Tugas Praktikum
