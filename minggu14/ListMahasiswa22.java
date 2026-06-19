@@ -61,55 +61,91 @@ public class ListMahasiswa22 {
         // Memanggil fungsi binary search dari Collections framework
         return Collections.binarySearch(mahasiswas, key, comp);
     }
+    //
+    // // Main Method
+    // public static void main(String[] args) {
+    //     ListMahasiswa22 lm = new ListMahasiswa22();
+    //
+    //     // Membuat instansiasi objek mahasiswa
+    //     Mahasiswa22 m = new Mahasiswa22("201234", "Noureen", "021xx1");
+    //     Mahasiswa22 m1 = new Mahasiswa22("201235", "Akhleema", "021xx2");
+    //     Mahasiswa22 m2 = new Mahasiswa22("201236", "Shannum", "021xx3");
+    //
+    //     // Menambahkan objek mahasiswa ke dalam list
+    //     lm.tambah(m, m1, m2);
+    //
+    //     System.out.println("Daftar Mahasiswa Awal:");
+    //     lm.tampil();
+    //
+    //     String nimCari = "201235";
+    //
+    //     // Menggunakan Linear Search
+    //     System.out.println("\nMenjalankan Linear Search...");
+    //
+    //     int indexLinear = lm.linearSearch(nimCari);
+    //
+    //     if (indexLinear >= 0) {
+    //         System.out.println("[HASIL] NIM " + nimCari + " ditemukan via Linear Search pada indeks: " + indexLinear);
+    //         // Update data hasil linear search
+    //         lm.update(indexLinear, new Mahasiswa22("201235", "Akhleema Lela (Linear)", "021xx2"));
+    //     } else {
+    //         System.out.println("[HASIL] NIM " + nimCari + " tidak ditemukan via Linear Search.");
+    //     }
+    //
+    //     System.out.println("\nData setelah di-update via Linear Search:");
+    //     lm.tampil();
+    //
+    //
+    //     // Menggunakan Binary Search
+    //     System.out.println("\nMenjalankan Binary Search...");
+    //
+    //     int indexBinary = lm.binarySearch(nimCari);
+    //
+    //     if (indexBinary >= 0) {
+    //         System.out.println("[HASIL] NIM " + nimCari + " ditemukan via Binary Search pada indeks: " + indexBinary);
+    //         // Update data hasil binary search
+    //         lm.update(indexBinary, new Mahasiswa22("201235", "Akhleema Lela (Binary)", "021xx2"));
+    //     } else {
+    //         System.out.println("[HASIL] NIM " + nimCari + " tidak ditemukan via Binary Search.");
+    //     }
+    //
+    //     System.out.println("\nData akhir setelah di-update via Binary Search:");
+    //     lm.tampil();
+    // }
 
-    // Main Method
+    // Fungsi untuk mengurutkan daftar mahasiswa berdasarkan NIM secara Ascending (Kecil ke Besar)
+    public void sortAscending() {
+        mahasiswas.sort((m1, m2) -> m1.nim.compareTo(m2.nim));
+    }
+
+    // Fungsi untuk mengurutkan daftar mahasiswa berdasarkan NIM secara Descending (Besar ke Kecil)
+    public void sortDescending() {
+        mahasiswas.sort((m1, m2) -> m2.nim.compareTo(m1.nim));
+    }
+
+
+    // percobaan sorting 
     public static void main(String[] args) {
         ListMahasiswa22 lm = new ListMahasiswa22();
         
-        // Membuat instansiasi objek mahasiswa
-        Mahasiswa22 m = new Mahasiswa22("201234", "Noureen", "021xx1");
-        Mahasiswa22 m1 = new Mahasiswa22("201235", "Akhleema", "021xx2");
-        Mahasiswa22 m2 = new Mahasiswa22("201236", "Shannum", "021xx3");
+        // Data diinputkan dengan NIM acak (tidak terurut)
+        Mahasiswa22 m = new Mahasiswa22("201236", "Shannum", "021xx3");
+        Mahasiswa22 m1 = new Mahasiswa22("201234", "Noureen", "021xx1");
+        Mahasiswa22 m2 = new Mahasiswa22("201235", "Akhleema", "021xx2");
 
-        // Menambahkan objek mahasiswa ke dalam list
         lm.tambah(m, m1, m2);
 
-        System.out.println("Daftar Mahasiswa Awal:");
+        System.out.println("DATA AWAL");
         lm.tampil();
 
-        String nimCari = "201235";
-
-        // Menggunakan Linear Search
-        System.out.println("\nMenjalankan Linear Search...");
-        
-        int indexLinear = lm.linearSearch(nimCari);
-        
-        if (indexLinear >= 0) {
-            System.out.println("[HASIL] NIM " + nimCari + " ditemukan via Linear Search pada indeks: " + indexLinear);
-            // Update data hasil linear search
-            lm.update(indexLinear, new Mahasiswa22("201235", "Akhleema Lela (Linear)", "021xx2"));
-        } else {
-            System.out.println("[HASIL] NIM " + nimCari + " tidak ditemukan via Linear Search.");
-        }
-        
-        System.out.println("\nData setelah di-update via Linear Search:");
+        // Menguji Urut Ascending
+        lm.sortAscending();
+        System.out.println("\nSETELAH SORT ASCENDING (NIM KECIL KE BESAR)");
         lm.tampil();
 
-
-        // Menggunakan Binary Search
-        System.out.println("\nMenjalankan Binary Search...");
-        
-        int indexBinary = lm.binarySearch(nimCari);
-        
-        if (indexBinary >= 0) {
-            System.out.println("[HASIL] NIM " + nimCari + " ditemukan via Binary Search pada indeks: " + indexBinary);
-            // Update data hasil binary search
-            lm.update(indexBinary, new Mahasiswa22("201235", "Akhleema Lela (Binary)", "021xx2"));
-        } else {
-            System.out.println("[HASIL] NIM " + nimCari + " tidak ditemukan via Binary Search.");
-        }
-
-        System.out.println("\nData akhir setelah di-update via Binary Search:");
+        // Menguji Urut Descending
+        lm.sortDescending();
+        System.out.println("\nSETELAH SORT DESCENDING (NIM BESAR KE KECIL)");
         lm.tampil();
     }
 }

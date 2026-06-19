@@ -444,6 +444,39 @@ Mahasiswa{nim=201236, nama=Shannum, notelp=021xx3}
 
 3. **Tambahkan fungsi sorting baik secara ascending ataupun descending pada class tersebut!**
 
+menambahkan kode ini:
+```java
+    // Fungsi untuk mengurutkan daftar mahasiswa berdasarkan NIM secara Ascending (Kecil ke Besar)
+    public void sortAscending() {
+        mahasiswas.sort((m1, m2) -> m1.nim.compareTo(m2.nim));
+    }
+
+    // Fungsi untuk mengurutkan daftar mahasiswa berdasarkan NIM secara Descending (Besar ke Kecil)
+    public void sortDescending() {
+        mahasiswas.sort((m1, m2) -> m2.nim.compareTo(m1.nim));
+    }
+```
+Dua metode ini dapat dimasukkan ke dalam class `ListMahasiswa22` sebelum main method. Pengurutan dilakukan berdasarkan atribut NIM menggunakan ekspresi Lambda. 
+
+hasil:
+```bash
+❯ java minggu14/ListMahasiswa22.java
+DATA AWAL
+Mahasiswa{nim=201236, nama=Shannum, notelp=021xx3}
+Mahasiswa{nim=201234, nama=Noureen, notelp=021xx1}
+Mahasiswa{nim=201235, nama=Akhleema, notelp=021xx2}
+
+SETELAH SORT ASCENDING (NIM KECIL KE BESAR)
+Mahasiswa{nim=201234, nama=Noureen, notelp=021xx1}
+Mahasiswa{nim=201235, nama=Akhleema, notelp=021xx2}
+Mahasiswa{nim=201236, nama=Shannum, notelp=021xx3}
+
+SETELAH SORT DESCENDING (NIM BESAR KE KECIL)
+Mahasiswa{nim=201236, nama=Shannum, notelp=021xx3}
+Mahasiswa{nim=201235, nama=Akhleema, notelp=021xx2}
+Mahasiswa{nim=201234, nama=Noureen, notelp=021xx1}
+```
+
 ## Tugas Praktikum
 
 ### Deskripsi
