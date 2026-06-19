@@ -42,7 +42,7 @@ public class ContohList22 {
 
 ### Output Main Program
 ```bash
-PrakAlgoData26_1E_22 main  ? ❯ java minggu14/ContohList22.java
+❯ java minggu14/ContohList22.java
 Element 0: 1 total elemen: 4 elemen terakhir: Cireng
 Element 0: 2 total elemen: 4 elemen terakhir: 4
 Element 0: Noureen total elemen: 5 elemen terakhir: Al-Qarni
@@ -72,25 +72,69 @@ l.remove(0);
 System.out.printf("Element 0: %d total elemen: %d elemen terakhir: %d\n", l.get(0), l.size(), l.get(l.size() - 1));
 ```
 
-3. **Atribut `root` di class BinaryTree:**
-   a. **Apa kegunaan dari atribut `root` di dalam class BinaryTree?** Sebagai titik awal (entry point) atau node teratas dari sebuah tree.
-   b. **Ketika objek tree pertama kali dibuat, apa nilai dari `root`?** Bernilai `null` karena tree masih kosong.
-4. **Ketika tree masih kosong, dan akan ditambahkan sebuah node baru, proses apa yang akan terjadi?**
-   Node baru tersebut akan langsung diatur dan ditetapkan menjadi node `root`.
-5. **Perhatikan method `add()`, di dalamnya terdapat baris program seperti di bawah ini. Jelaskan secara logis untuk apa kode tersebut terjadi?**
-   ```java
-   if(data < current.data){
-    if(current.left!=null){
-       current = current.left;
-    }else{
-       current.left = new Node(data);
-       break;
-    }
-   }
-   ```
-   Kode ini membandingkan data baru dengan data saat ini. Jika lebih kecil, node akan diarahkan ke child kiri. Jika child kiri belum kosong, iterasi terus berlanjut ke bawah. Jika child kiri kosong, node baru ditempatkan di sana lalu perulangan dihentikan (`break`).
-6. **Penghapusan node dengan dua child:**
-   Jika sebuah node memiliki dua child, kita menggunakan *successor* (node dengan nilai terkecil pada subtree kanan) atau *predecessor* untuk menggantikan posisi node yang dihapus. Dengan demikian, properti BST tetap terjaga.
+3. **Ubah Kode pada baris 38 menjadi seperti ini:**
+```java
+LinkedList<String> names = new LinkedList<>();
+```
+4. **Tambahkan juga baris berikut ini, untuk memberikan perbedaan dari tampilan yang sebelumnya:**
+```java
+names.push("Mei-mei");
+System.out.printf("Elemen 0: %s total elemen: %s elemen terakhir: %s\n", names.getFirst(), names.size(), names.getLast());
+System.out.println("Names: " + names.toString());
+```
+
+5. **Hasil dijalankannya program**
+kode program yang sudah diubah:
+```java
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+public class ContohList22 {
+  public static void main(String[] args) {
+    // Pertanyaan 2: Mengubah menjadi tipe spesifik Integer
+    List<Integer> l = new ArrayList<>();
+
+    l.add(1);
+    l.add(2);
+    l.add(3);
+    l.add(99); // Diubah dari "Cireng" menjadi angka
+    System.out.printf("Element 0: %d total elemen: %d elemen terakhir: %d\n", l.get(0), l.size(), l.get(l.size() - 1));
+    
+    l.add(4);
+    l.remove(0);
+    System.out.printf("Element 0: %d total elemen: %d elemen terakhir: %d\n", l.get(0), l.size(), l.get(l.size() - 1));
+
+    LinkedList<String> names = new LinkedList<>();
+    names.add("Noureen");
+    names.add("Akhleema");
+    names.add("Shannum");
+    names.add("Uwais");
+    names.add("Al-Qarni");
+    
+    System.out.printf("Element 0: %s total elemen: %d elemen terakhir: %s\n", names.get(0), names.size(), names.get(names.size() - 1));
+    
+    names.push("Mei-mei");
+    System.out.printf("Elemen 0: %s total elemen: %d elemen terakhir: %s\n", names.getFirst(), names.size(), names.getLast());
+    System.out.println("Names: " + names.toString());
+  }
+}
+```
+
+```bash
+❯ java minggu14/ContohList22.java
+Element 0: 1 total elemen: 4 elemen terakhir: 99
+Element 0: 2 total elemen: 4 elemen terakhir: 4
+Element 0: Noureen total elemen: 5 elemen terakhir: Al-Qarni
+Elemen 0: Mei-mei total elemen: 6 elemen terakhir: Al-Qarni
+Names: [Mei-mei, Noureen, Akhleema, Shannum, Uwais, Al-Qarni]
+```
+
+Penjelasan:
+- Penggunaan Generics (List<Integer>): Menentukan tipe data <Integer> membuat ArrayList menjadi aman dari kesalahan tipe data (type-safe) karena hanya mengizinkan angka bulat, sehingga menghilangkan semua warning kompilasi.  
+- Perubahan ke LinkedList: Mengubah deklarasi menjadi LinkedList<String> membuka akses ke metode khusus seperti push(), getFirst(), dan getLast() yang tidak tersedia pada interface List biasa.  
+- Efek names.push("Mei-mei"): Metode push() memasukkan data baru ke urutan paling depan (indeks 0) dengan prinsip Stack (LIFO), sehingga menggeser posisi data lainnya dan menambah total elemen menjadi 6.  
+- Fungsi getFirst() dan getLast(): Kedua metode ini mempermudah pengambilan data di ujung awal ("Mei-mei") dan ujung akhir ("Al-Qarni") secara langsung tanpa perlu menghitung indeks secara manual.  
 
 ---
 
